@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<style>
+body{
+    background-image: url(../images/sharr.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    border-radius:1rem;
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+</style>
+<body>
+<!--<div th:replace="common/header :: navbar"/>-->
+<div class="container-fluid">
+<h5 class="center-block" style="text-align:center; margin-top:20px; font-size:30px;">Welcome to admin portal - Travel Kosovo Booking</h5>
+<hr/>
+</div>
+<!--<img  th:src="@{/images/mid-logo.jpg}" class="img-responsive" style="width:250px;">-->
+
+<div class="container-fluid">
+    <div class="row mt-5"></div>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-xs-4 col-md-4"></div>
+    <div class="col-xs-4 col-md-4">
+        <div class="login-form-1">
+        <div class="bg-danger" th:if="${param.error}">
+            Invalid username or password.
+        </div>
+        <div class="bg-danger" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form class="form-signin" th:action="@{/login}" method="post">
+            <h3 class="form-signin-heading" style="text-align:center;">Please sign in</h3>
+            <div class="form-group">
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" class="form-control" placeholder="Username"
+                       name="username" id="username" required="required" autofocus="autofocus"/>
+            </div>
+            <div class="form-group">
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" class="form-control" placeholder="Password"
+                       name="password" id="password" required="required" />
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+        </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Site footer -->
+<!--<div th:replace="common/header :: footer"/>-->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

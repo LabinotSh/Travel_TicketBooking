@@ -1,0 +1,1141 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+
+
+<style>
+  .tab-content {
+  min-height: 30rem;
+}
+
+
+.login-form-1{
+    padding: 3%;
+    box-shadow: 0 5px 8px 0 rgba(192, 192, 192, 0.15), 0 9px 26px 0 rgba(47, 79, 79, 0.20);
+    border-radius:1rem;
+    opacity:0.90;
+}
+
+ .module {
+  background-color: #ffffff;
+  text-align:center;
+  height: 100px;
+  margin: 5px 0 0 20px;
+  opacity:0.75;
+}
+
+
+.top h3 {
+  color: black;
+  margin: 0;
+  padding: 10px;
+  font-weight:lighter;
+}
+
+ body {
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.15)
+    ),
+    url(/images/bjehulla.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  }
+
+  .hover:hover{
+  opacity:1;
+  }
+
+</style>
+<body>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 module top text-center" style="border-radius:3rem;">
+            <h3 style="margin-top:5px;">Kosovo Travel & Booking.</h3>
+            <h4 class="text-dark" style="margin-top:5px; font-style:italic; font-weight:lighter;">～My Profile～</h4>
+        </div>
+    </div>
+</div>
+
+<!--Container-->
+<div class="container-fluid" style="width:100%; margin-bottom:40px; margin-top:20px;">
+
+    <div class="row no-gutters">
+<!--        <div class="col-sm-3"></div>-->
+        <div class="col-sm-3">
+<!--            <img class="img-responsive" src="/images/bjehulla.jpg" style="width:100%;"/>-->
+        </div>
+        <div class="col-sm-6 bg-light hover" style="border-radius:.5rem; border:1px solid #DCDCDC; opacity:0.99;">
+            <ul class="nav nav-pills nav-fill nav-justified" role="tablist" id="myTab" style="border-radius:.5rem;">
+                <li class="nav-item" th:classappend="${classActiveEdit}? 'active'" role="tabpanel" ><a class="nav-link" href="#tab-1" data-toggle="pill">
+                    <span style="color:dark-blue; font-size:15px;">Edit</span> </a></li>
+                <li class="nav-item" th:classappend="${classActiveOrders}? 'active'" role="tabpanel"><a class="nav-link disabled" href="#tab-2" data-toggle="pill">
+                    <span style="color:dark-blue; font-size:15px;">Orders</span> </a></li>
+                <li class="nav-item" th:classappend="${classActiveBilling}? 'active'" role="tabpanel"><a class="nav-link" href="#tab-3" data-toggle="pill">
+                    <span style="color:dark-blue; font-size:15px;">Billing</span> </a></li>
+                <li class="nav-item" th:classappend="${classActiveShipping}? 'active'" role="tabpanel"><a class="nav-link" href="#tab-4" data-toggle="pill">
+                    <span style="color:dark-blue; font-size:15px;">Shipping</span> </a></li>
+            </ul>
+
+            <div class="tab-content" style="border-radius:2rem;">
+<!--                Edit user info   --- TAB 1  -->
+                <div class="tab-pane" id="tab-1" th:classappend="${classActiveEdit}? 'in active'">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body" style="background-color:#ededed;">
+                                <div class="login-form-1">
+                                    <h3 class="text-primary" style="text-align:center; margin-bottom:.5rem; padding:.2rem;"><i class="fas fa-user-edit"></i>Edit Profile</h3>
+                                    <hr style="background-color:#4682B4;"/>
+                                    <div class="alert alert-danger" th:if="${incorrectPassword}">
+                                        Incorrect password! Please enter the correct password for the current user.
+                                    </div>
+                                    <div class="alert alert-success" th:if="${updateSuccess}">
+                                        Personal info updated.
+                                    </div>
+                                <form th:action="@{/updateUserInfo}" method="post">
+                                    <input type="hidden" name="id" th:value="${user.id}">
+
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label for="firstName">First Name</label>
+                                                <input type="text" class="form-control form-control-sm" id="firstName"
+                                                name="firstName" th:value="${user.firstName}"/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="lastName">Last Name</label>
+                                                <input type="text" class="form-control form-control-sm" id="lastName"
+                                                       name="lastName" th:value="${user.lastName}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userName">Username</label>
+                                        <input type="text" class="form-control form-control-sm" id="userName"
+                                               name="username" th:value="${user.username}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currentPassword">Current Password</label>
+                                        <input type="text" class="form-control form-control-sm" id="currentPassword"
+                                               name="password" th:value="${currentPassword}"/>
+                                        <small class="passwordHelp" style="color:#828282;">Enter your current password to change your email or password.</small>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="text" class="form-control form-control-sm" id="email"
+                                               name="email" th:value="${user.email}"/>
+                                        <small class="emailHelp" style="color:#828282;">A valid email address.</small>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="txtNewPassword">New Password</label>
+                                        &nbsp;<span id="checkPasswordMatch" style="color:red; font-size:14px;"></span>
+                                        <input type="password" class="form-control form-control-sm" id="txtNewPassword"
+                                               name="newPassword"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtConfirmPassword">Confirm Password</label>
+                                        <input type="password" class="form-control form-control-sm" id="txtConfirmPassword" name="confirmPassword"/>
+                                        <small class="confirmPasswordHelp" style="color:#828282">Confirm the new password.</small>
+                                    </div>
+
+
+                                    <hr style="background-color:#4682B4;" />
+                                    <!-- Save All button -->
+                                    <div class="row justify-content-center">
+                                        <button id="updateUserInfoButton" class="btn btn-info" type="submit" style="width:20%; border-radius:2rem;">Save All</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Orders Information --- TAB 2-->
+                <div class="tab-pane" id="tab-2" th:classappend="${classActiveOrders}? 'in active'">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-header" style="background-color:#DCDCDC; text-align:center;"><h5><span class="text-primary">Orders</span></h5></div>
+                            <div class="card-body" style="background-color:#ededed;">
+                                <table class="table table-sm table-inverse">
+                                    <thead>
+                                    <tr>
+                                        <th>Order Date</th>
+                                        <th>Order Number</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="order : ${orderList}">
+                                        <td><a th:href="@{/orderDetail(id=${order.id})}"><span th:text="${order.orderDate}"></span></a></td>
+                                        <td data-th-text="${order.id}"></td>
+                                        <td data-th-text="${order.orderTotal}"></td>
+                                        <td data-th-text="${order.orderStatus}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <div th:if="${displayOrderDetail}">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="text-center">
+                                                <h3>Order detail for purchase #<span th:text="${order.id}"></span></h3>
+
+                                            </div>
+                                            <hr />
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="card height">
+                                                        <div class="card-header">
+                                                            Billing Details
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <span th:text="${order.billingAddress.billingAddressName}"></span><br/>
+                                                            <span th:text="${order.billingAddress.billingAddressStreet}"></span><br/>
+                                                            <span th:text="${order.billingAddress.billingAddressCity}"></span><br/>
+                                                            <span th:text="${order.billingAddress.billingAddressCountry}"></span><br/>
+                                                            <span th:text="${order.billingAddress.billingAddressZipCode}"></span><br/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="card height">
+                                                        <div class="card-header">
+                                                            Payment Information
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <span th:text="${order.payment.holderName}">Card Name</span><br/>
+                                                            <span th:text="${order.payment.cardNumber}">Card Number</span><br/>
+                                                            <span>Exp. Date:</span><span th:text="${order.payment.expiryMonth}">/</span>
+                                                            <span th:text="${order.payment.expiryYear}"></span><br/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="card height">
+                                                        <div class="card-header">
+                                                            Shipping Details
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <span th:text="${order.shippingAddress.shippingAddressName}"></span><br/>
+                                                            <span th:text="${order.shippingAddress.shippingAddressStreet}"></span><br/>
+                                                            <span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
+                                                            <span th:text="${order.shippingAddress.shippingAddressCountry}"></span><br/>
+                                                            <span th:text="${order.shippingAddress.shippingAddressZipCode}"></span><br/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h3 class="text-center"> Order Summary</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-condensed">
+                                                            <thead>
+                                                            <tr>
+                                                                <td><strong>Item name</strong></td>
+                                                                <td class="text-center">Item Price</td>
+                                                                <td class="text-center">Item Quantity</td>
+                                                                <td class="text-center">Total</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr th:each="cartItem : ${cartItemList}">
+                                                                <td data-th-text="${cartItem.location.name}"></td>
+                                                                <td class="text-center" data-th-text="${cartItem.location.bookingPrice}"></td>
+                                                                <td class="text-center" data-th-text="${cartItem.qty}"></td>
+                                                                <td class="text-center" data-th-text="${cartItem.subTotal}"></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="highrow"></td>
+                                                                <td class="highrow"></td>
+                                                                <td class="highrow text-center">SubTotal</td>
+                                                                <td class="highrow text-right" data-th-text="${order.orderTotal}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="emptyrow"></td>
+                                                                <td class="emptyrow"></td>
+                                                                <td class="emptyrow text-center"><strong>Tax</strong></td>
+                                                                <td class="emptyrow text-right" data-th-text="${#numbers.formatDecimal(order.orderTotal*0.16,0,2)}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="emptyrow"><i class="fas fa-barcode iconbig"></i> </td>
+                                                                <td class="emptyrow"></td>
+                                                                <td class="emptyrow text-center"><strong>Total</strong></td>
+                                                                <td th:with="total=${order.orderTotal+order.orderTotal*0.16}"
+                                                                    data-th-text="${#numbers.formatDecimal(total,0,2)}"
+                                                                    class="emptyrow text-right"></td>
+                                                            </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Billing  Information ---- TAB 3 -->
+                <div class="tab-pane" id="tab-3" th:classappend="${classActiveBilling}? 'in active'">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body" style="background-color:#ededed;">
+                                <div class="login-form-1">
+<!--                                    <div style="text-align:center; color: #0062cc; margin-bottom:.8rem; padding:.3rem; border-radius:2rem;"-->
+<!--                                         class="text-info"><h4><span>Billing Info</span><i style="margin-left:20px;" class="fas fa-address-card"></i></h4></div>-->
+                                    <h3 class="text-primary" style="text-align:center; margin-bottom:.5rem; padding:.2rem;">
+                                        <i class="fas fa-address-card" style="margin-right:10px;"></i>Billing Info</h3>
+                                    <hr style="background-color:#4682B4;"/>
+                               <ol class="breadcrumb bg-light">
+                                   <li class="breadcrumb-item active">
+                                       <a th:href="@{/listOfCreditCards}" th:style="${listOfCreditCards}? 'color:red'">List of Credit Cards</a>
+                                   </li>
+                                   <li class="breadcrumb-item">
+                                       <a th:href="@{/addNewCreditCard}" th:style="${addNewCreditCard}? 'color:red'">Add(Update) Credit Card</a>
+                                   </li>
+                               </ol>
+
+                                <div th:if="${listOfCreditCards}">
+                                    <form th:action="@{/setDefaultPayment}" method="post">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Default</th>
+                                                <th>Credit Card</th>
+                                                <th>Operations</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="userPayment : ${userPaymentList}">
+                                                <td>
+                                                    <input type="radio" name="defaultUserPaymentId" th:value="${userPayment.id}"
+                                                           th:checked="${userPayment.defaultPayment}"/>
+                                                </td>
+                                                <td th:text="${userPayment.cardName}"></td>
+                                                <td>
+                                                    <a th:href="@{/updateCreditCard(id=${userPayment.id})}"><i class="fas fa-pencil-alt"></i>Update</a>
+                                                    <a th:href="@{/removeCreditCard(id=${userPayment.id})}"><i class="fas fa-times"></i>Remove</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                    </form>
+                                </div>
+
+                                <div th:if="${addNewCreditCard}">
+                                    <form th:action="@{/addNewCreditCard}" method="post">
+                                        <div class="bg-info" th:if="${updateUserPaymentInfo}">User info updated.</div>
+
+                                        <input hidden="hidden" name="id" th:value="${userPayment.id}"/>
+
+                                        <div class="form-group">
+                                            <h6>*Give a name for your card: </h6>
+                                            <input type="text" class="form-control form-control-sm" id="cardName" placeholder="Card Name"
+                                                   th:name="cardName" required="required" th:value="${userPayment.cardName}"/>
+                                        </div>
+
+<!--                                        Billing Address-->
+                                        <hr style="background-color:#4682B4;"/>
+                                        <div class="form-group">
+                                            <h5>Billing Address</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="billingName">* Name</label>
+                                            <input type="text" class="form-control form-control-sm" id="billingName" placeholder="Receiver Name"
+                                                   th:name="userBillingName" required="required" th:value="${userBilling.userBillingName}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="billingAddress">* Street Address</label>
+                                            <input type="text" class="form-control form-control-sm" id="billingAddress" placeholder="Street Address"
+                                                   th:name="userBillingStreet" required="required" th:value="${userBilling.userBillingStreet}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="billingCity">* City</label>
+                                            <input type="text" class="form-control form-control-sm" id="billingCity" placeholder="City"
+                                                   th:name="userBillingCity" required="required" th:value="${userBilling.userBillingCity}" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="billingCountry">* Country</label>
+                                                   <select id="billingCountry" class="form-control form-control-sm" th:name="userBillingCountry"
+                                                           th:value="${userBilling.userBillingCountry}" required="required">
+                                                       <option value="">Please select an option.</option>
+<!--                                                       <option th:each="state : ${stateList}" th:text="${state}"-->
+<!--                                                       th:selected="(${userBilling.userBillingCity}==${state})"></option>-->
+                                                           <option value="AF">Afghanistan</option>
+                                                           <option value="AX">Åland Islands</option>
+                                                           <option value="AL">Albania</option>
+                                                           <option value="DZ">Algeria</option>
+                                                           <option value="AS">American Samoa</option>
+                                                           <option value="AD">Andorra</option>
+                                                           <option value="AO">Angola</option>
+                                                           <option value="AI">Anguilla</option>
+                                                           <option value="AQ">Antarctica</option>
+                                                           <option value="AG">Antigua and Barbuda</option>
+                                                           <option value="AR">Argentina</option>
+                                                           <option value="AM">Armenia</option>
+                                                           <option value="AW">Aruba</option>
+                                                           <option value="AU">Australia</option>
+                                                           <option value="AT">Austria</option>
+                                                           <option value="AZ">Azerbaijan</option>
+                                                           <option value="BS">Bahamas</option>
+                                                           <option value="BH">Bahrain</option>
+                                                           <option value="BD">Bangladesh</option>
+                                                           <option value="BB">Barbados</option>
+                                                           <option value="BY">Belarus</option>
+                                                           <option value="BE">Belgium</option>
+                                                           <option value="BZ">Belize</option>
+                                                           <option value="BJ">Benin</option>
+                                                           <option value="BM">Bermuda</option>
+                                                           <option value="BT">Bhutan</option>
+                                                           <option value="BO">Bolivia, Plurinational State of</option>
+                                                           <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                                                           <option value="BA">Bosnia and Herzegovina</option>
+                                                           <option value="BW">Botswana</option>
+                                                           <option value="BV">Bouvet Island</option>
+                                                           <option value="BR">Brazil</option>
+                                                           <option value="IO">British Indian Ocean Territory</option>
+                                                           <option value="BN">Brunei Darussalam</option>
+                                                           <option value="BG">Bulgaria</option>
+                                                           <option value="BF">Burkina Faso</option>
+                                                           <option value="BI">Burundi</option>
+                                                           <option value="KH">Cambodia</option>
+                                                           <option value="CM">Cameroon</option>
+                                                           <option value="CA">Canada</option>
+                                                           <option value="CV">Cape Verde</option>
+                                                           <option value="KY">Cayman Islands</option>
+                                                           <option value="CF">Central African Republic</option>
+                                                           <option value="TD">Chad</option>
+                                                           <option value="CL">Chile</option>
+                                                           <option value="CN">China</option>
+                                                           <option value="CX">Christmas Island</option>
+                                                           <option value="CC">Cocos (Keeling) Islands</option>
+                                                           <option value="CO">Colombia</option>
+                                                           <option value="KM">Comoros</option>
+                                                           <option value="CG">Congo</option>
+                                                           <option value="CD">Congo, the Democratic Republic of the</option>
+                                                           <option value="CK">Cook Islands</option>
+                                                           <option value="CR">Costa Rica</option>
+                                                           <option value="CI">Côte d'Ivoire</option>
+                                                           <option value="HR">Croatia</option>
+                                                           <option value="CU">Cuba</option>
+                                                           <option value="CW">Curaçao</option>
+                                                           <option value="CY">Cyprus</option>
+                                                           <option value="CZ">Czech Republic</option>
+                                                           <option value="DK">Denmark</option>
+                                                           <option value="DJ">Djibouti</option>
+                                                           <option value="DM">Dominica</option>
+                                                           <option value="DO">Dominican Republic</option>
+                                                           <option value="EC">Ecuador</option>
+                                                           <option value="EG">Egypt</option>
+                                                           <option value="SV">El Salvador</option>
+                                                           <option value="GQ">Equatorial Guinea</option>
+                                                           <option value="ER">Eritrea</option>
+                                                           <option value="EE">Estonia</option>
+                                                           <option value="ET">Ethiopia</option>
+                                                           <option value="FK">Falkland Islands (Malvinas)</option>
+                                                           <option value="FO">Faroe Islands</option>
+                                                           <option value="FJ">Fiji</option>
+                                                           <option value="FI">Finland</option>
+                                                           <option value="FR">France</option>
+                                                           <option value="GF">French Guiana</option>
+                                                           <option value="PF">French Polynesia</option>
+                                                           <option value="TF">French Southern Territories</option>
+                                                           <option value="GA">Gabon</option>
+                                                           <option value="GM">Gambia</option>
+                                                           <option value="GE">Georgia</option>
+                                                           <option value="DE">Germany</option>
+                                                           <option value="GH">Ghana</option>
+                                                           <option value="GI">Gibraltar</option>
+                                                           <option value="GR">Greece</option>
+                                                           <option value="GL">Greenland</option>
+                                                           <option value="GD">Grenada</option>
+                                                           <option value="GP">Guadeloupe</option>
+                                                           <option value="GU">Guam</option>
+                                                           <option value="GT">Guatemala</option>
+                                                           <option value="GG">Guernsey</option>
+                                                           <option value="GN">Guinea</option>
+                                                           <option value="GW">Guinea-Bissau</option>
+                                                           <option value="GY">Guyana</option>
+                                                           <option value="HT">Haiti</option>
+                                                           <option value="HM">Heard Island and McDonald Islands</option>
+                                                           <option value="VA">Holy See (Vatican City State)</option>
+                                                           <option value="HN">Honduras</option>
+                                                           <option value="HK">Hong Kong</option>
+                                                           <option value="HU">Hungary</option>
+                                                           <option value="IS">Iceland</option>
+                                                           <option value="IN">India</option>
+                                                           <option value="ID">Indonesia</option>
+                                                           <option value="IR">Iran, Islamic Republic of</option>
+                                                           <option value="IQ">Iraq</option>
+                                                           <option value="IE">Ireland</option>
+                                                           <option value="IM">Isle of Man</option>
+                                                           <option value="IL">Israel</option>
+                                                           <option value="IT">Italy</option>
+                                                           <option value="JM">Jamaica</option>
+                                                           <option value="JP">Japan</option>
+                                                           <option value="JE">Jersey</option>
+                                                           <option value="JO">Jordan</option>
+                                                           <option value="KZ">Kazakhstan</option>
+                                                           <option value="KE">Kenya</option>
+                                                           <option value="KI">Kiribati</option>
+                                                           <option value="KP">Korea, Democratic People's Republic of</option>
+                                                           <option value="KR">Korea, Republic of</option>
+                                                           <option value="XK">Kosovo</option>
+                                                           <option value="KW">Kuwait</option>
+                                                           <option value="KG">Kyrgyzstan</option>
+                                                           <option value="LA">Lao People's Democratic Republic</option>
+                                                           <option value="LV">Latvia</option>
+                                                           <option value="LB">Lebanon</option>
+                                                           <option value="LS">Lesotho</option>
+                                                           <option value="LR">Liberia</option>
+                                                           <option value="LY">Libya</option>
+                                                           <option value="LI">Liechtenstein</option>
+                                                           <option value="LT">Lithuania</option>
+                                                           <option value="LU">Luxembourg</option>
+                                                           <option value="MO">Macao</option>
+                                                           <option value="MK">Macedonia, the former Yugoslav Republic of</option>
+                                                           <option value="MG">Madagascar</option>
+                                                           <option value="MW">Malawi</option>
+                                                           <option value="MY">Malaysia</option>
+                                                           <option value="MV">Maldives</option>
+                                                           <option value="ML">Mali</option>
+                                                           <option value="MT">Malta</option>
+                                                           <option value="MH">Marshall Islands</option>
+                                                           <option value="MQ">Martinique</option>
+                                                           <option value="MR">Mauritania</option>
+                                                           <option value="MU">Mauritius</option>
+                                                           <option value="YT">Mayotte</option>
+                                                           <option value="MX">Mexico</option>
+                                                           <option value="FM">Micronesia, Federated States of</option>
+                                                           <option value="MD">Moldova, Republic of</option>
+                                                           <option value="MC">Monaco</option>
+                                                           <option value="MN">Mongolia</option>
+                                                           <option value="ME">Montenegro</option>
+                                                           <option value="MS">Montserrat</option>
+                                                           <option value="MA">Morocco</option>
+                                                           <option value="MZ">Mozambique</option>
+                                                           <option value="MM">Myanmar</option>
+                                                           <option value="NA">Namibia</option>
+                                                           <option value="NR">Nauru</option>
+                                                           <option value="NP">Nepal</option>
+                                                           <option value="NL">Netherlands</option>
+                                                           <option value="NC">New Caledonia</option>
+                                                           <option value="NZ">New Zealand</option>
+                                                           <option value="NI">Nicaragua</option>
+                                                           <option value="NE">Niger</option>
+                                                           <option value="NG">Nigeria</option>
+                                                           <option value="NU">Niue</option>
+                                                           <option value="NF">Norfolk Island</option>
+                                                           <option value="MP">Northern Mariana Islands</option>
+                                                           <option value="NO">Norway</option>
+                                                           <option value="OM">Oman</option>
+                                                           <option value="PK">Pakistan</option>
+                                                           <option value="PW">Palau</option>
+                                                           <option value="PS">Palestinian Territory, Occupied</option>
+                                                           <option value="PA">Panama</option>
+                                                           <option value="PG">Papua New Guinea</option>
+                                                           <option value="PY">Paraguay</option>
+                                                           <option value="PE">Peru</option>
+                                                           <option value="PH">Philippines</option>
+                                                           <option value="PN">Pitcairn</option>
+                                                           <option value="PL">Poland</option>
+                                                           <option value="PT">Portugal</option>
+                                                           <option value="PR">Puerto Rico</option>
+                                                           <option value="QA">Qatar</option>
+                                                           <option value="RE">Réunion</option>
+                                                           <option value="RO">Romania</option>
+                                                           <option value="RU">Russian Federation</option>
+                                                           <option value="RW">Rwanda</option>
+                                                           <option value="BL">Saint Barthélemy</option>
+                                                           <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                                                           <option value="KN">Saint Kitts and Nevis</option>
+                                                           <option value="LC">Saint Lucia</option>
+                                                           <option value="MF">Saint Martin (French part)</option>
+                                                           <option value="PM">Saint Pierre and Miquelon</option>
+                                                           <option value="VC">Saint Vincent and the Grenadines</option>
+                                                           <option value="WS">Samoa</option>
+                                                           <option value="SM">San Marino</option>
+                                                           <option value="ST">Sao Tome and Principe</option>
+                                                           <option value="SA">Saudi Arabia</option>
+                                                           <option value="SN">Senegal</option>
+                                                           <option value="RS">Serbia</option>
+                                                           <option value="SC">Seychelles</option>
+                                                           <option value="SL">Sierra Leone</option>
+                                                           <option value="SG">Singapore</option>
+                                                           <option value="SX">Sint Maarten (Dutch part)</option>
+                                                           <option value="SK">Slovakia</option>
+                                                           <option value="SI">Slovenia</option>
+                                                           <option value="SB">Solomon Islands</option>
+                                                           <option value="SO">Somalia</option>
+                                                           <option value="ZA">South Africa</option>
+                                                           <option value="GS">South Georgia and the South Sandwich Islands</option>
+                                                           <option value="SS">South Sudan</option>
+                                                           <option value="ES">Spain</option>
+                                                           <option value="LK">Sri Lanka</option>
+                                                           <option value="SD">Sudan</option>
+                                                           <option value="SR">Suriname</option>
+                                                           <option value="SJ">Svalbard and Jan Mayen</option>
+                                                           <option value="SZ">Swaziland</option>
+                                                           <option value="SE">Sweden</option>
+                                                           <option value="CH">Switzerland</option>
+                                                           <option value="SY">Syrian Arab Republic</option>
+                                                           <option value="TW">Taiwan, Province of China</option>
+                                                           <option value="TJ">Tajikistan</option>
+                                                           <option value="TZ">Tanzania, United Republic of</option>
+                                                           <option value="TH">Thailand</option>
+                                                           <option value="TL">Timor-Leste</option>
+                                                           <option value="TG">Togo</option>
+                                                           <option value="TK">Tokelau</option>
+                                                           <option value="TO">Tonga</option>
+                                                           <option value="TT">Trinidad and Tobago</option>
+                                                           <option value="TN">Tunisia</option>
+                                                           <option value="TR">Turkey</option>
+                                                           <option value="TM">Turkmenistan</option>
+                                                           <option value="TC">Turks and Caicos Islands</option>
+                                                           <option value="TV">Tuvalu</option>
+                                                           <option value="UG">Uganda</option>
+                                                           <option value="UA">Ukraine</option>
+                                                           <option value="AE">United Arab Emirates</option>
+                                                           <option value="GB">United Kingdom</option>
+                                                           <option value="US">United States</option>
+                                                           <option value="UM">United States Minor Outlying Islands</option>
+                                                           <option value="UY">Uruguay</option>
+                                                           <option value="UZ">Uzbekistan</option>
+                                                           <option value="VU">Vanuatu</option>
+                                                           <option value="VE">Venezuela, Bolivarian Republic of</option>
+                                                           <option value="VN">Viet Nam</option>
+                                                           <option value="VG">Virgin Islands, British</option>
+                                                           <option value="VI">Virgin Islands, U.S.</option>
+                                                           <option value="WF">Wallis and Futuna</option>
+                                                           <option value="EH">Western Sahara</option>
+                                                           <option value="YE">Yemen</option>
+                                                           <option value="ZM">Zambia</option>
+                                                           <option value="ZW">Zimbabwe</option>
+                                                   </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="billingZipCode">* ZipCode</label>
+                                                    <input type="text" class="form-control form-control-sm" id="billingZipCode" placeholder="Zip Code"
+                                                           th:name="userBillingZipCode" required="required" th:value="${userBilling.userBillingZipCode}" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--Credit Card Info-->
+                                        <hr style="background-color:#4682B4;"/>
+                                        <div class="form-group">
+                                            <h5>Credit Card Info</h5>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <img class="img-responsive" src="/images/creditCard.png"/><br/>
+                                                <div class="form-group">
+                                                    <label for="cardType">* Select Card Type:</label>
+                                                    <select class="form-control form-control-sm" id="cardType" th:name="type"
+                                                            th:value="${userPayment.type}">
+                                                        <option value="visa">Visa</option>
+                                                        <option value="mastercard">Mastercard</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cardHolder">* Card Holder Name:</label>
+                                                    <input type="text" id="cardHolder" class="form-control form-control-sm" required="required"
+                                                           placeholder="Card Holder Name" th:name="holderName" th:value="${userPayment.holderName}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cardNumber">* Card Number:</label>
+                                                    <div class="input-group">
+                                                    <input type="tel" id="cardNumber" class="form-control form-control-sm" required="required"
+                                                           placeholder="Valid Card Number" th:name="cardNumber" th:value="${userPayment.cardNumber}"/>
+                                                    <span class="input-group-addon"><i class="fas fa-credit-card" aria-hidden="true"></i> </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <div class="form-group">
+                                                    <label>* Expiration Date</label>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <select class="form-control form-control-sm" name="expiryMonth" required="required"
+                                                            th:value="${userPayment.expiryMonth}">
+                                                                <option disabled="disabled"> --Month--</option>
+                                                                <option value="01">Jan (01)</option>
+                                                                <option value="02">Feb (02)</option>
+                                                                <option value="03">Mar (03)</option>
+                                                                <option value="04">Apr (04)</option>
+                                                                <option value="05">May (05)</option>
+                                                                <option value="06">June (06)</option>
+                                                                <option value="07">July (07)</option>
+                                                                <option value="08">Aug (08)</option>
+                                                                <option value="09">Sep (09)</option>
+                                                                <option value="10">Oct (10)</option>
+                                                                <option value="11">Nov (11)</option>
+                                                                <option value="12">Dec (12)</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <select class="form-control form-control-sm" name="expiryYear" required="required"
+                                                                    th:value="${userPayment.expiryYear}">
+                                                                <option disabled="disabled">--Year--</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2021">2021</option>
+                                                                <option value="2022">2022</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                                <option value="2025">2025</option>
+                                                                <option value="2026">2026</option>
+                                                                <option value="2027">2027</option>
+                                                                <option value="2028">2028</option>
+                                                                <option value="2029">2029</option>
+                                                                <option value="2030">2030</option>
+                                                                <option value="2031">2031</option>
+                                                                <option value="2032">2032</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label for="cardCVC">* Cv Code</label>
+                                                    <input type="tel" id="cardCVC" class="form-control form-control-sm" name="cvc"
+                                                           placeholder="CVC" th:name="cvc" th:value="${userPayment.cvc}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="background-color:#4682B4;"/>
+                                        <div class="form-group" style="text-align:center;">
+                                        <button type="submit" class="btn btn-primary" style="width:20%; border-radius:2rem;">Save All</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             <!--Shipping Information-- TAB 4 ---->
+                <div class="tab-pane" id="tab-4" th:classappend="${classActiveShipping}? 'in active'">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body" style="background-color:#ededed;">
+                                <div class="login-form-1">
+<!--                                    <div style="text-align:center; color: #0062cc; margin-bottom:.8rem; padding:.3rem; border-radius:3rem;"-->
+<!--                                         class="text-info"><h4><span>Shipping Info</span><i style="margin-left:20px;" class="fas fa-shipping-fast"></i></h4></div>-->
+                                    <h3 class="text-primary" style="text-align:center; margin-bottom:.5rem; padding:.2rem;">
+                                        <i class="fas fa-shipping-fast" style="margin-right:8px;"></i>Shipping Info</h3>
+                                    <hr style="background-color:#4682B4;"/>
+                                <ol class="breadcrumb bg-light">
+                                    <li class="breadcrumb-item active">
+                                        <a th:href="@{/listOfShippingAddresses}" th:style="${listOfShippingAddresses}? 'color:red'">List of Shipping Addresses</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a th:href="@{/addNewShippingAddress}" th:style="${addNewShippingAddress}? 'color:red'">Add(Update) Shipping Address</a>
+                                    </li>
+                                </ol>
+
+                                <div th:if="${listOfShippingAddresses}">
+                                    <form th:action="@{/setDefaultShippingAddress}" method="post">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Default</th>
+                                                <th>Shipping Address</th>
+                                                <th>Operations</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="userShipping : ${userShippingList}">
+                                                <td>
+                                                    <input type="radio" name="defaultShippingAddressId" th:value="${userShipping.id}"
+                                                           th:checked="${userShipping.userShippingDefault}"/><span>default</span>
+                                                </td>
+                                                <td th:text="${userShipping.userShippingStreet}+', '+
+                                                ${userShipping.userShippingCity}+', '+${userShipping.userShippingCountry}"></td>
+                                                <td>
+                                                    <a th:href="@{/updateUserShipping(id=${userShipping.id})}"><i class="fas fa-pencil-alt"></i>Update</a>
+                                                    <a th:href="@{/removeUserShipping(id=${userShipping.id})}" style="margin-left:5px;"><i class="fas fa-times"></i>Remove</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                    </form>
+                                </div>
+
+                                <div th:if="${addNewShippingAddress}">
+                                    <form th:action="@{/addNewShippingAddress}" method="post">
+                                        <div class="bg-info" th:if="${updateUserShippingInfo}">User info updated.</div>
+
+                                        <input hidden="hidden" name="id" th:value="${userShipping.id}"/>
+
+                                        <!--Shipping Address-->
+                                        <hr style="background-color:#4682B4;"/>
+                                        <div class="form-group">
+                                            <h5>Shipping Address</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shippingName">* Name</label>
+                                            <input type="text" class="form-control form-control-sm" id="shippingName" placeholder="Receiver Name"
+                                                   th:name="userShippingName" required="required" th:value="${userShipping.userShippingName}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shippingAddress">* Street Address</label>
+                                            <input type="text" class="form-control form-control-sm" id="shippingAddress" placeholder="Street Address"
+                                                   th:name="userShippingStreet" required="required" th:value="${userShipping.userShippingStreet}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shippingCity">* City</label>
+                                            <input type="text" class="form-control form-control-sm" id="shippingCity" placeholder="City"
+                                                   th:name="userShippingCity" required="required" th:value="${userShipping.userShippingCity}" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="shippingCountry">* Country</label>
+                                                    <select id="shippingCountry" class="form-control form-control-sm" th:name="userShippingCountry"
+                                                            th:value="${userShipping.userShippingCountry}"
+                                                            required="required">
+                                                        <option value="">Please select an option.</option>
+                                                        <!--                                                       <option th:each="state : ${stateList}" th:text="${state}"-->
+                                                        <!--                                                       th:selected="(${userBilling.userBillingCity}==${state})"></option>-->
+                                                        <option value="AF">Afghanistan</option>
+                                                        <option value="AX">Åland Islands</option>
+                                                        <option value="AL">Albania</option>
+                                                        <option value="DZ">Algeria</option>
+                                                        <option value="AS">American Samoa</option>
+                                                        <option value="AD">Andorra</option>
+                                                        <option value="AO">Angola</option>
+                                                        <option value="AI">Anguilla</option>
+                                                        <option value="AQ">Antarctica</option>
+                                                        <option value="AG">Antigua and Barbuda</option>
+                                                        <option value="AR">Argentina</option>
+                                                        <option value="AM">Armenia</option>
+                                                        <option value="AW">Aruba</option>
+                                                        <option value="AU">Australia</option>
+                                                        <option value="AT">Austria</option>
+                                                        <option value="AZ">Azerbaijan</option>
+                                                        <option value="BS">Bahamas</option>
+                                                        <option value="BH">Bahrain</option>
+                                                        <option value="BD">Bangladesh</option>
+                                                        <option value="BB">Barbados</option>
+                                                        <option value="BY">Belarus</option>
+                                                        <option value="BE">Belgium</option>
+                                                        <option value="BZ">Belize</option>
+                                                        <option value="BJ">Benin</option>
+                                                        <option value="BM">Bermuda</option>
+                                                        <option value="BT">Bhutan</option>
+                                                        <option value="BO">Bolivia, Plurinational State of</option>
+                                                        <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                                                        <option value="BA">Bosnia and Herzegovina</option>
+                                                        <option value="BW">Botswana</option>
+                                                        <option value="BV">Bouvet Island</option>
+                                                        <option value="BR">Brazil</option>
+                                                        <option value="IO">British Indian Ocean Territory</option>
+                                                        <option value="BN">Brunei Darussalam</option>
+                                                        <option value="BG">Bulgaria</option>
+                                                        <option value="BF">Burkina Faso</option>
+                                                        <option value="BI">Burundi</option>
+                                                        <option value="KH">Cambodia</option>
+                                                        <option value="CM">Cameroon</option>
+                                                        <option value="CA">Canada</option>
+                                                        <option value="CV">Cape Verde</option>
+                                                        <option value="KY">Cayman Islands</option>
+                                                        <option value="CF">Central African Republic</option>
+                                                        <option value="TD">Chad</option>
+                                                        <option value="CL">Chile</option>
+                                                        <option value="CN">China</option>
+                                                        <option value="CX">Christmas Island</option>
+                                                        <option value="CC">Cocos (Keeling) Islands</option>
+                                                        <option value="CO">Colombia</option>
+                                                        <option value="KM">Comoros</option>
+                                                        <option value="CG">Congo</option>
+                                                        <option value="CD">Congo, the Democratic Republic of the</option>
+                                                        <option value="CK">Cook Islands</option>
+                                                        <option value="CR">Costa Rica</option>
+                                                        <option value="CI">Côte d'Ivoire</option>
+                                                        <option value="HR">Croatia</option>
+                                                        <option value="CU">Cuba</option>
+                                                        <option value="CW">Curaçao</option>
+                                                        <option value="CY">Cyprus</option>
+                                                        <option value="CZ">Czech Republic</option>
+                                                        <option value="DK">Denmark</option>
+                                                        <option value="DJ">Djibouti</option>
+                                                        <option value="DM">Dominica</option>
+                                                        <option value="DO">Dominican Republic</option>
+                                                        <option value="EC">Ecuador</option>
+                                                        <option value="EG">Egypt</option>
+                                                        <option value="SV">El Salvador</option>
+                                                        <option value="GQ">Equatorial Guinea</option>
+                                                        <option value="ER">Eritrea</option>
+                                                        <option value="EE">Estonia</option>
+                                                        <option value="ET">Ethiopia</option>
+                                                        <option value="FK">Falkland Islands (Malvinas)</option>
+                                                        <option value="FO">Faroe Islands</option>
+                                                        <option value="FJ">Fiji</option>
+                                                        <option value="FI">Finland</option>
+                                                        <option value="FR">France</option>
+                                                        <option value="GF">French Guiana</option>
+                                                        <option value="PF">French Polynesia</option>
+                                                        <option value="TF">French Southern Territories</option>
+                                                        <option value="GA">Gabon</option>
+                                                        <option value="GM">Gambia</option>
+                                                        <option value="GE">Georgia</option>
+                                                        <option value="DE">Germany</option>
+                                                        <option value="GH">Ghana</option>
+                                                        <option value="GI">Gibraltar</option>
+                                                        <option value="GR">Greece</option>
+                                                        <option value="GL">Greenland</option>
+                                                        <option value="GD">Grenada</option>
+                                                        <option value="GP">Guadeloupe</option>
+                                                        <option value="GU">Guam</option>
+                                                        <option value="GT">Guatemala</option>
+                                                        <option value="GG">Guernsey</option>
+                                                        <option value="GN">Guinea</option>
+                                                        <option value="GW">Guinea-Bissau</option>
+                                                        <option value="GY">Guyana</option>
+                                                        <option value="HT">Haiti</option>
+                                                        <option value="HM">Heard Island and McDonald Islands</option>
+                                                        <option value="VA">Holy See (Vatican City State)</option>
+                                                        <option value="HN">Honduras</option>
+                                                        <option value="HK">Hong Kong</option>
+                                                        <option value="HU">Hungary</option>
+                                                        <option value="IS">Iceland</option>
+                                                        <option value="IN">India</option>
+                                                        <option value="ID">Indonesia</option>
+                                                        <option value="IR">Iran, Islamic Republic of</option>
+                                                        <option value="IQ">Iraq</option>
+                                                        <option value="IE">Ireland</option>
+                                                        <option value="IM">Isle of Man</option>
+                                                        <option value="IL">Israel</option>
+                                                        <option value="IT">Italy</option>
+                                                        <option value="JM">Jamaica</option>
+                                                        <option value="JP">Japan</option>
+                                                        <option value="JE">Jersey</option>
+                                                        <option value="JO">Jordan</option>
+                                                        <option value="KZ">Kazakhstan</option>
+                                                        <option value="KE">Kenya</option>
+                                                        <option value="KI">Kiribati</option>
+                                                        <option value="KP">Korea, Democratic People's Republic of</option>
+                                                        <option value="KR">Korea, Republic of</option>
+                                                        <option value="XK">Kosovo</option>
+                                                        <option value="KW">Kuwait</option>
+                                                        <option value="KG">Kyrgyzstan</option>
+                                                        <option value="LA">Lao People's Democratic Republic</option>
+                                                        <option value="LV">Latvia</option>
+                                                        <option value="LB">Lebanon</option>
+                                                        <option value="LS">Lesotho</option>
+                                                        <option value="LR">Liberia</option>
+                                                        <option value="LY">Libya</option>
+                                                        <option value="LI">Liechtenstein</option>
+                                                        <option value="LT">Lithuania</option>
+                                                        <option value="LU">Luxembourg</option>
+                                                        <option value="MO">Macao</option>
+                                                        <option value="MK">Macedonia, the former Yugoslav Republic of</option>
+                                                        <option value="MG">Madagascar</option>
+                                                        <option value="MW">Malawi</option>
+                                                        <option value="MY">Malaysia</option>
+                                                        <option value="MV">Maldives</option>
+                                                        <option value="ML">Mali</option>
+                                                        <option value="MT">Malta</option>
+                                                        <option value="MH">Marshall Islands</option>
+                                                        <option value="MQ">Martinique</option>
+                                                        <option value="MR">Mauritania</option>
+                                                        <option value="MU">Mauritius</option>
+                                                        <option value="YT">Mayotte</option>
+                                                        <option value="MX">Mexico</option>
+                                                        <option value="FM">Micronesia, Federated States of</option>
+                                                        <option value="MD">Moldova, Republic of</option>
+                                                        <option value="MC">Monaco</option>
+                                                        <option value="MN">Mongolia</option>
+                                                        <option value="ME">Montenegro</option>
+                                                        <option value="MS">Montserrat</option>
+                                                        <option value="MA">Morocco</option>
+                                                        <option value="MZ">Mozambique</option>
+                                                        <option value="MM">Myanmar</option>
+                                                        <option value="NA">Namibia</option>
+                                                        <option value="NR">Nauru</option>
+                                                        <option value="NP">Nepal</option>
+                                                        <option value="NL">Netherlands</option>
+                                                        <option value="NC">New Caledonia</option>
+                                                        <option value="NZ">New Zealand</option>
+                                                        <option value="NI">Nicaragua</option>
+                                                        <option value="NE">Niger</option>
+                                                        <option value="NG">Nigeria</option>
+                                                        <option value="NU">Niue</option>
+                                                        <option value="NF">Norfolk Island</option>
+                                                        <option value="MP">Northern Mariana Islands</option>
+                                                        <option value="NO">Norway</option>
+                                                        <option value="OM">Oman</option>
+                                                        <option value="PK">Pakistan</option>
+                                                        <option value="PW">Palau</option>
+                                                        <option value="PS">Palestinian Territory, Occupied</option>
+                                                        <option value="PA">Panama</option>
+                                                        <option value="PG">Papua New Guinea</option>
+                                                        <option value="PY">Paraguay</option>
+                                                        <option value="PE">Peru</option>
+                                                        <option value="PH">Philippines</option>
+                                                        <option value="PN">Pitcairn</option>
+                                                        <option value="PL">Poland</option>
+                                                        <option value="PT">Portugal</option>
+                                                        <option value="PR">Puerto Rico</option>
+                                                        <option value="QA">Qatar</option>
+                                                        <option value="RE">Réunion</option>
+                                                        <option value="RO">Romania</option>
+                                                        <option value="RU">Russian Federation</option>
+                                                        <option value="RW">Rwanda</option>
+                                                        <option value="BL">Saint Barthélemy</option>
+                                                        <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                                                        <option value="KN">Saint Kitts and Nevis</option>
+                                                        <option value="LC">Saint Lucia</option>
+                                                        <option value="MF">Saint Martin (French part)</option>
+                                                        <option value="PM">Saint Pierre and Miquelon</option>
+                                                        <option value="VC">Saint Vincent and the Grenadines</option>
+                                                        <option value="WS">Samoa</option>
+                                                        <option value="SM">San Marino</option>
+                                                        <option value="ST">Sao Tome and Principe</option>
+                                                        <option value="SA">Saudi Arabia</option>
+                                                        <option value="SN">Senegal</option>
+                                                        <option value="RS">Serbia</option>
+                                                        <option value="SC">Seychelles</option>
+                                                        <option value="SL">Sierra Leone</option>
+                                                        <option value="SG">Singapore</option>
+                                                        <option value="SX">Sint Maarten (Dutch part)</option>
+                                                        <option value="SK">Slovakia</option>
+                                                        <option value="SI">Slovenia</option>
+                                                        <option value="SB">Solomon Islands</option>
+                                                        <option value="SO">Somalia</option>
+                                                        <option value="ZA">South Africa</option>
+                                                        <option value="GS">South Georgia and the South Sandwich Islands</option>
+                                                        <option value="SS">South Sudan</option>
+                                                        <option value="ES">Spain</option>
+                                                        <option value="LK">Sri Lanka</option>
+                                                        <option value="SD">Sudan</option>
+                                                        <option value="SR">Suriname</option>
+                                                        <option value="SJ">Svalbard and Jan Mayen</option>
+                                                        <option value="SZ">Swaziland</option>
+                                                        <option value="SE">Sweden</option>
+                                                        <option value="CH">Switzerland</option>
+                                                        <option value="SY">Syrian Arab Republic</option>
+                                                        <option value="TW">Taiwan, Province of China</option>
+                                                        <option value="TJ">Tajikistan</option>
+                                                        <option value="TZ">Tanzania, United Republic of</option>
+                                                        <option value="TH">Thailand</option>
+                                                        <option value="TL">Timor-Leste</option>
+                                                        <option value="TG">Togo</option>
+                                                        <option value="TK">Tokelau</option>
+                                                        <option value="TO">Tonga</option>
+                                                        <option value="TT">Trinidad and Tobago</option>
+                                                        <option value="TN">Tunisia</option>
+                                                        <option value="TR">Turkey</option>
+                                                        <option value="TM">Turkmenistan</option>
+                                                        <option value="TC">Turks and Caicos Islands</option>
+                                                        <option value="TV">Tuvalu</option>
+                                                        <option value="UG">Uganda</option>
+                                                        <option value="UA">Ukraine</option>
+                                                        <option value="AE">United Arab Emirates</option>
+                                                        <option value="GB">United Kingdom</option>
+                                                        <option value="US">United States</option>
+                                                        <option value="UM">United States Minor Outlying Islands</option>
+                                                        <option value="UY">Uruguay</option>
+                                                        <option value="UZ">Uzbekistan</option>
+                                                        <option value="VU">Vanuatu</option>
+                                                        <option value="VE">Venezuela, Bolivarian Republic of</option>
+                                                        <option value="VN">Viet Nam</option>
+                                                        <option value="VG">Virgin Islands, British</option>
+                                                        <option value="VI">Virgin Islands, U.S.</option>
+                                                        <option value="WF">Wallis and Futuna</option>
+                                                        <option value="EH">Western Sahara</option>
+                                                        <option value="YE">Yemen</option>
+                                                        <option value="ZM">Zambia</option>
+                                                        <option value="ZW">Zimbabwe</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="shippingZipCode">* ZipCode</label>
+                                                    <input type="text" class="form-control form-control-sm" id="shippingZipCode" placeholder="Zip Code"
+                                                           th:name="userShippingZipCode" required="required" th:value="${userShipping.userShippingZipCode}" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <hr style="background-color:#4682B4;"/>
+                                        <div class="form-group" style="text-align:center;">
+                                            <button type="submit" class="btn btn-primary" style="width:20%; border-radius:2rem;">Save All</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="common/header :: footer"/>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+
+<script>
+$(document).ready(function(){
+    $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+});
+</script>
+
+</body>
+</html>

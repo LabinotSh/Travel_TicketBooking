@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Travel Guide and Booking - Admin portal</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/image.css"/>
+    <link rel="stylesheet" href="/css/footer1.css"/>
+    <link rel="stylesheet" href="/css/social.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+
+<div th:fragment="navbar" style="margin-bottom:20px;">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">Brand</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a th:href="@{/admin}" class="nav-item nav-link active">Admin Portal</a>
+<!--                <a href="#" class="nav-item nav-link">Profile</a>-->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Touristic locations
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/location/add}">Add another touristic location</a>
+                        <a class="dropdown-item" th:href="@{/location/locationList}">View touristic locations</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-nav">
+                <a th:href="@{/logout}" class="nav-item nav-link">Sign Out</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="footer">
+    <footer class="py-4 bg-dark text-white-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h6 style="color:white;">About</h6>
+                    <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code.</p>
+                </div>
+                <div class="col-sm-4" style="text-align:center;">
+                    <h6 style="color:white;">Find us on social media</h6>
+                    <div>
+                        <a class="btn-floating btn-fb" type="button" role="button" href="https://www.facebook.com/labinot.sherifi.5">
+                            <i class="fa fa fa-facebook"></i></a>
+                        <a class="btn-floating btn-li" type="button" role="button" href="https://www.linkedin.com/in/labinot-sherifi-588880178/">
+                            <i class="fa fa-linkedin"></i></a>
+                        <!--Github-->
+                        <a class="btn-floating btn-git" type="button" role="button" href="https://github.com/LabinotSh">
+                            <i class="fa fa fa-github"></i></a>
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <p class="copyright-text" style="color:white;">Copyright &copy; 2020 All Rights Reserved by
+                        <a href="#s"><span>Travel</span></a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div th:fragment="body-bottom-scripts">
+
+    <script>
+    $('.dropdown-toggle').dropdown();
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+</div>
+
+
+
+</body>
+</html>

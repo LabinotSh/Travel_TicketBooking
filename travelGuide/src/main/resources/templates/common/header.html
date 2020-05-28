@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Travel Guide and Booking</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/image.css"/>
+    <link rel="stylesheet" href="/css/footer1.css"/>
+    <link rel="stylesheet" href="/css/social.css"/>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!--    <script src="/js/tab.js"></script>-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+<div th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="margin-bottom:0px;">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#"><img src="/images/sma.jpg" style="border-radius:40%;"></a>
+        <!-- Links -->
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" th:href="@{/}">Home</a>
+            <a class="nav-item nav-link" href="#about">About</a>
+
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Destinations
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#top">Top Destinations</a></li>
+                    <li><a class="dropdown-item" th:href="@{/destinationList}">View Destinations</a></li>
+                </ul>
+            </div>
+              <a class="nav-item nav-link" th:href="@{/shoppingCart/cart}"><span><i class="fas fa-shopping-cart"></i></span> Shopping Cart</a>
+
+          </div>
+
+            <div class="navbar-nav">
+                <a  sec:authorize="isAnonymous()" class="nav-item nav-link" th:href="@{/login}"><span><i class="fas fa-user"></i></span> My Account</a>
+                <a  sec:authorize="isAuthenticated()" class="nav-item nav-link" th:href="@{/myProfile}"><span><i class="fas fa-user"></i></span> My Profile</a>
+                <a  sec:authorize="isAuthenticated()" class="nav-item nav-link" th:href="@{/logout}"><span><i class="fas fa-user"></i></span> Log Out</a>
+            </div>
+
+
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="footer">
+    <footer class="py-4 bg-dark text-white-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <p class="copyright-text" style="color:white;">Copyright &copy; 2020 All Rights Reserved by:
+                    <p><a href="#s"><span class="text-primary">Kosovo Travel&Tour Booking.</span></a></p>
+                    </p>
+                </div>
+                <div class="col-sm-4" style="text-align:center;">
+                    <h6 style="color:white;">Find us on social media</h6>
+                        <div>
+                            <a class="btn-floating btn-fb" type="button" role="button" href="https://www.facebook.com/labinot.sherifi.5">
+                                <i class="fa fa fa-facebook"></i></a>
+                            <a class="btn-floating btn-li" type="button" role="button" href="https://www.linkedin.com/in/labinot-sherifi-588880178/">
+                                <i class="fa fa-linkedin"></i></a>
+                            <!--Github-->
+                            <a class="btn-floating btn-git" type="button" role="button" href="https://github.com/LabinotSh">
+                                <i class="fa fa fa-github"></i></a>
+                        </div>
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div th:fragment="body-bottom-scripts">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <script>
+    $('.dropdown-toggle').dropdown();
+    </script>
+
+</div>
+
+</body>
+</html>

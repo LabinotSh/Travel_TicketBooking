@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<style>
+
+.login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 3 rgba(0, 0, 0, 0.15), 0 9px 26px 0 rgba(0, 0, 0, 0.20);
+    border-radius:1rem;
+    opacity:0.90;
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+
+.btnSubmit{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+
+
+.gray-bg {
+          background: #F0F0F0 !important;
+          }
+
+
+.bg {
+  /* The image used */
+  background-image: url('/images/nn.jpg');
+
+  /* Full height */
+  height: 200px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+</style>
+
+<body>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+
+
+
+<div class="container-fluid">
+    <div class="row align-items-end bg">
+      <div class="col-sm-12 align-self-end  text-center">
+
+
+        <div class="display-4 text-center text-white"><span>Destination Details</span></div>
+        <hr style="background-color:white;"/>
+      </div>
+    </div>
+</div>
+
+<!--Container-->
+<div class="container-fluid" style="width:95%; margin-bottom:50px; margin-top:10px;">
+<div class="gray-bg">
+    <div class="container" style="margin-top:30px;">
+    <div class="row">
+
+
+    <form th:action="@{/shoppingCart/addItem}" method="post">
+        <a role="button" class="btn btn-primary btn-sm" th:href="@{/destinationList}" style="margin-top:15px; border-radius:2rem;">
+            <i class="fa fa-arrow-left"></i>Back to destination list</a>
+<!--        <div class="display-4 text-center"><span th:text="${location.name}"></span></div>-->
+<!--        <hr/>-->
+        <input hidden="hidden" th:field="${location.id}" />
+        <div class="row">
+        <div class="col-sm-8">
+            <h5 style="color:#228B22;"> <span th:if="${addLocationSuccess}"><i class="fas fa-check"></i></span>Ticket/s for the destination added to the cart</h5>
+
+        </div>
+        </div>
+        <div class="row" style="margin-top:50px;">
+            <div class="col-sm-5">
+                <img class="img-responsive destination-list" th:src="@{/images/location/}+${location.id}+'.jpg'" style="margin:5px;"/>
+            </div>
+
+            <div class="col-sm-6" style="margin-top:0px; margin-left:-40px;">
+                <div style="font-style:'Palatino Linotype', 'Book Antiqua', Palatino, serif; "> <span th:text="${location.name}" style="font-size:25px; color:darkred;">, </span> -
+                    <span th:text="${location.address}" style="font-size:25px; color:darkred;">,</span></div>
+                <h6> </h6>
+<!--                <h6>Municipality: <span th:text="${location.municipality}" style="font-size:17px; color:darkred;"></span></h6>-->
+                <h6>Ticket price: <span th:text="${#numbers.formatDecimal(location.bookingPrice,0,'COMMA',2,'POINT')}" style="font-size:17px; color:darkred;"></span>
+                    <span style="font-size:x-medium;color:#db3208">€</span></h6>
+                <hr/>
+                <p><span th:text="${location.description}" style="font-style:'Palatino Linotype', 'Book Antiqua', Palatino, serif;"></span></p>
+
+                    <div class="card bg-dark text-white" style="border-width:2px;">
+                        <div class="card-body">
+                            <div class="card-header text-center">
+                                <div class="card-title text-warning" style="font-size:18px;">
+                                    Booking & Ticket info
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input hidden="hidden" name="id" th:value="${location.id}"/>
+                                        <label for="bookingDate">Booking Date:</label>
+                                        <input type="date" id="bookingDate" name="bookingDate"
+                                               th:value="${location.bookingDate}"
+                                               max="2022-12-31" style="margin-right:1rem;" />
+                                        <i class="fas fa-ticket-alt text-warning" style="margin-right:5px;margin-left:4px;"></i>
+                                        <span>Nr. of Tickets:</span>
+                                        <select name="qty">
+                                            <option th:each="qty : ${qtyList}" th:value="${qty}" th:text="${qty}">
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="text-center">
+                                    <input type="submit" value="Book Now" class="btn btn-sm btn-warning py-2"
+                                           style="font-size: 1em; border-radius:4rem; width:20%;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+        <hr style="margin-top:50px;"/>
+        <!--                <div>-->
+        <!--                    <img class="img-responsive" th:src="@{/images/colorK.gif}" style="border-radius:50%;"/>-->
+        <!--                </div>-->
+    </form>
+
+        <div>
+
+        </div>
+    </div>
+    </div>
+</div>
+
+</div>
+<div th:replace="common/header :: footer"/>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+<script>
+
+document.getElementById('bookingDate').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+
+</script>
+
+</body>
+</html>

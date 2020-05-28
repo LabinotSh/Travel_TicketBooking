@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<style>
+
+.carousel-item {
+  height: 90vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+			.carousel-caption
+			{
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				z-index: 10;
+				padding-top: 20px;
+				padding-bottom: 20px;
+				color: #fff;
+				text-align: center;
+				background: rgba(0,0,0,0.4);
+			}
+
+			.carousel-item.active,
+            .carousel-item-next,
+            .carousel-item-prev {
+             display: block;
+             }
+
+			.jumbotron-image {
+             background-position: center center;
+             background-repeat: no-repeat;
+             background-size: cover;
+             }
+             .bg-cover {
+<!--    background-attachment: static;-->
+             background-position: center;
+             background-repeat: no-repeat;
+             background-size: cover;
+             }
+
+             .bg-light{
+             color: #D3D3D3;
+             }
+
+
+             .paddingTB60 {padding:60px 0px 60px 0px;}
+             .gray-bg {
+              background: #F0F0F0 !important;
+              }
+              .about-title {}
+              .about-title h1 {
+color: #535353; font-size:40px;font-weight:600;
+}
+.about-title span {
+color: #AF0808; font-size:25px;font-weight:700;
+}
+.about-title h3 {
+color: #535353; font-size:23px;margin-bottom:24px;
+}
+.about-title p {
+color: #7a7a7a;line-height: 1.8;margin: 0 0 15px;
+}
+.about-paddingB {
+padding-bottom: 12px;
+}
+.about-img {
+padding-left: 57px;
+}
+
+/* Social Icons */
+.about-icons {margin:48px 0px 48px 0px ;}
+.about-icons i{margin-right: 10px;padding: 0px; font-size:35px;color:#323232;box-shadow: 0 0 3px rgba(0, 0, 0, .2);}
+.about-icons li {margin:0px;padding:0;display:inline-block;}
+#social-fb:hover {color: #3B5998;transition:all .001s;}
+ #social-tw:hover {color: #4099FF;transition:all .001s;}
+ #social-gp:hover {color: #d34836;transition:all .001s;}
+ #social-em:hover {color: #f39c12;transition:all .001s;}
+
+.jumbotron{
+height:500px;
+}
+
+
+</style>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+<!--Container-->
+    <div class="container-fluid px-0">
+        <div class="row no-gutters">
+            <div class="col-sm-12">
+
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <!-- Slide One - Set the background image for this slide in the line below -->
+                        <div class="carousel-item active" style="background-image: url(/images/brezo.jpg)">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 class="display-4">Brezovica, Sharr Mountains</h3>
+                                <p>Brezovica is a settlement in the Štrpce municipality in Kosovo, known for its Brezovica ski resort.
+                                    <br/>Brezovica is the most visited winter tourist destinations in Kosovo</p>
+                                <span class="btn btn-sm btn-outline-secondary">Learn More</span>
+                            </div>
+                        </div>
+                        <!-- Slide Two - Set the background image for this slide in the line below -->
+                        <div class="carousel-item" style="background-image: url(/images/bogaa.jpg)">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 class="display-4">Boge, Rugove</h3>
+                                <p>Boge Bogë is a small mountainous village and also a holiday resort village in western Kosovo.
+                                    <br />Bogë is located at Rugova Vallery, in the Albanian Alps mountain range on an altitude of about 1,300m – 1,400m.t</p>
+                                <span class="btn btn-sm btn-outline-secondary">Learn More</span>
+                            </div>
+                        </div>
+                        <!-- Slide Three - Set the background image for this slide in the line below -->
+                        <div class="carousel-item" style="background-image: url(/images/ddd.jpg)">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 class="display-4">White Drin Waterfall, Peje</h3>
+                                <p>The White Drin Waterfall is a waterfall in the western part of Kosovo.
+                                    <br/>The waterfall is located at the mouth of the White Drin river and is 25 m high.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 4 - Set the background image for this slide in the line below -->
+                        <div class="carousel-item" style="background-image: url(/images/no.jpg)">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 class="display-4">Novo Brdo Fortress, Novo Brdo</h3>
+                                <p>Novo Brdo Fortress is a medieval Serbian fortress in Kosovo.<br/>
+                                    Its ruins are located near the town of Novo Brdo, about 40 kilometres east of Pristina.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<!--        <hr  style="color:#adadad;"/>-->
+
+<div class="container-fluid">
+    <div class="row mt-5"></div>
+</div>
+
+
+<!--About Section-->
+<div class="container mb-0">
+    <hr/>
+</div>
+<div class="container pt-2 mb-5" id="about">
+        <div class="about-section paddingTB60 gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-sm-6">
+                        <div class="about-title clearfix">
+                            <h1>About</h1>
+                            <h3><span>Kosovo Travel&Tour Booking</span></h3>
+                            <p class="about-paddingB">
+                                <p>
+                                Kosovo Travel&Tour Booking is a site that offers opportunities to enjoy Kosovo's loveliest touristic places.
+                                Part of our mission is to make it easier for everyone to experience Kosovo's amazing touristic points with great prices.</p>
+
+                               <p> By investing in technology that takes the friction out of travel, we seamlessly connect everyone who would like to have memorable experiences and much more. </p>
+                               <p>As one of the Kosovo’s largest travel marketplaces for both established brands and entrepreneurs of all sizes, we enable properties around the country of Kosovo to reach a global audience and grow their businesses.</p>
+
+                        </p>
+                            <div class="about-icons">
+                                <ul >
+                                    <li><a href="https://www.facebook.com/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a> </li>
+                                    <li><a href="https://twitter.com/"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a> </li>
+                                    <li> <a href="https://plus.google.com/"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a> </li>
+                                    <li> <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a> </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-6" style="background: url(/images/kosova.jpg) no-repeat center center scroll;">
+                        <div class="about-img">
+<!--                            <img src="/images/mid-logo.jpg" alt="">-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!--            Section 2 - Destinations-->
+         <!--Container 2-->
+        <div class="container pt-3 mb-2" id="top">
+            <div class="row mt-4">
+                <div class="col-sm-4"></div>
+               <div class="col-sm-4">
+                <div class="display-4 text-center" style="font-family:Lucida Console, Courier, monospace; font-weight: none; font-size: 26px;">TOP DESTINATIONS</div>
+               </div>
+            </div>
+        </div>
+<div class="container mb-0">
+    <hr/>
+</div>
+
+<div class="container-fluid bg-light pt-0.5 mb-5" style="background-color: #F0F0F0;">
+     <div class="container">
+        <div class="row mt-5">
+            <div class="col-sm-4">
+                <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.6) 100%), url(https://placeimg.com/1000/480/nature)">
+                        <h2><small>Prevalle, Prizren</small></h2>
+<!--                        <p class="lead">Prevalla is a skiing center and touristic village which approximately is 30 km away from Prizren, and about twelve kilometers from Brezovica, the largest ski center in Kosovo.<br/>-->
+<!--                            Prevalla is a popular destination for hikers or skiers.</p>-->
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more to book it.</a>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+<!--                Second jumbotron-->
+                    <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.6) 100%), url(/images/boge.jpg)">
+                            <h2><small>Boge, Peje</small></h2>
+                            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                            <hr class="my-4">
+                            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more to book it</a>
+                    </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.6) 100%), url(/images/brezovica.jpg)">
+                        <h2><small>Brezovica, Sharr</small></h2>
+                        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                        <hr class="my-4">
+                        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more to book it.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--container-->
+
+
+<!--                <div class="card h-100">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-text">Blog - Top Attractions in Kosovo</h5>-->
+<!--                        <a href="https://theculturetrip.com/europe/kosovo/articles/7-must-see-attractions-in-kosovo/" title="">-->
+<!--                            <div class="thumb"> <img src="/images/ko.jpg" class="img-responsive img-thumbnail">-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="card h-100">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-text">The Map</h5>-->
+<!--                                &lt;!&ndash;Google map&ndash;&gt;-->
+<!--                        <div id="map-container-google-12" class="z-depth-1-half map-container-7">-->
+<!--                            <iframe src="https://maps.google.com/maps?q=pristina&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"-->
+<!--                                    style="border:0;" allowfullscreen></iframe>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+    <!-- Site footer -->
+<div th:replace="common/header :: footer"/>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js" type="text/javascript"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+<script>
+    $(function() {
+    $('.same-height').matchHeight();
+});
+</script>
+</body>
+</html>

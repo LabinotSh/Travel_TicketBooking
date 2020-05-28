@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+
+<style>
+    .login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    border-radius:1rem;
+}
+</style>
+
+<body>
+<div th:replace="common/header :: navbar"/>
+<!--Container-->
+<div class="container-fluid px-10">
+
+    <div class="row no-gutters">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="login-form-1">
+         <form class="form-horizontal" th:action="@{/location/add}" method="post" enctype="multipart/form-data">
+         <fieldset>
+            <legend class="center-block" style="text-align:center;">New Location Information</legend>
+
+<!--             Location Name-->
+            <div class="form-group row">
+            <label class="control-label" for="name">Location Name</label>
+            <input type="text" class="form-control form-control-sm" id="name" name="name" th:value="${location.name}"
+                   required="required" placeholder="Enter name" />
+                <small id="nameHelp" class="text-danger">
+                    Name of the tourist location.
+                </small>
+            </div>
+<!--             Location Address-->
+            <div class="form-group row">
+            <label for="address">Location Address</label>
+            <input type="text" class="form-control form-control-sm" id="address" name="address" th:value="${location.address}"
+                   required="required" placeholder="Enter address" />
+                <small id="addressHelp" class="text-danger">
+                   Address of the tourist location.
+                </small>
+            </div>
+<!--         Municipality of the location-->
+             <div class="form-group row">
+                 <label for="municipality">Location Municipality</label>
+                 <input type="text" class="form-control form-control-sm" id="municipality" name="municipality" th:value="${location.municipality}"
+                        required="required" placeholder="Enter municipality" />
+                 <small id="addressMunicipality" class="text-danger">
+                     The municipality of the tourist location.
+                 </small>
+             </div>
+<!--             Location booking price-->
+            <div class="form-group row">
+            <label for="price">Booking price</label>
+            <input type="number" class="form-control form-control-sm" id="price" name="bookingPrice" th:value="${location.bookingPrice}"
+                   required="required" placeholder="Enter booking price" />
+                <small id="priceHelp" class="text-danger">
+                    Booking price for the tourist location.
+                </small>
+            </div>
+<!--                Description of the location-->
+             <div class="form-group row">
+                 <label for="description">Description</label>
+                 <textarea rows="5" class="form-control form-control-sm" id="description" name="description" th:value="${location.description}"
+                           required="required" placeholder="Enter the description." ></textarea>
+                 <small id="descriptionHelp" class="text-danger">
+                     A description for the tourist location.
+                 </small>
+             </div>
+
+<!--             Tickets for the location-->
+
+             <div class="form-group row">
+                 <label for="nrOfTickets">Number of tickets</label>
+                 <input type="number" class="form-control form-control-sm" id="nrOfTickets" name="nrOfTickets" th:value="${location.nrOfTickets}"
+                        required="required" placeholder="Enter the tickets number." />
+                 <small id="nrOfTicketsHelp" class="text-danger">
+                     Number of tickets.
+                 </small>
+             </div>
+
+
+<!--                  upload image-->
+             <div class="form-group row">
+            <label for="locationImage">Location picture</label>
+            <input type="file" class="form-control-file" id="locationImage" name="locationImage" th:value="${location.locationImage}">
+                 <small id="locationImageHelp" class="text-danger">
+                     Upload a picture of the location.
+                 </small>
+            </div>
+
+             <div class="form-group row">
+            <button type="submit" class="btn btn-primary" style="margin-right:5px;">Add Location</button>
+                 <br/>
+                 <a class="btn btn-danger" th:href="@{/}">Cancel</a>
+             </div>
+           </fieldset>
+          </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--        <hr  style="color:#adadad;"/>-->
+
+<!-- Site footer -->
+<!--<div th:replace="common/header :: footer"/>-->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<style>
+
+.gray-bg {
+          background: #F0F0F0 !important;
+          }
+
+.gg {
+background: #D3D3D3 !important;
+}
+
+.background1 {
+background-image: linear-gradient(to bottom, rgba(255,255,255,0.7)0%,rgba(255,255,255,0.7) 80%), url("/images/bag.jpg");
+ background-size:cover;
+
+<!-- max-width: 1130px;-->
+}
+</style>
+
+<body>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+<!--Container-->
+<div class="container-fluid" style="width:95%; margin-bottom:50px;">
+
+
+        <div th:if="${emptyCart}" class="alert alert-warning">
+            Oops, your cart is empty. Wanna book something?
+        </div>
+
+
+
+    <div class="gray-bg" style="border-radius:2rem;">
+        <div class="gg" style="margin-top:20px; border-radius:2rem;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img class="img-responsive" src="/images/shop.png" />
+                    </div>
+                    <div class="col-sm-10 mt-10 text-center">
+                        <h4 class="display-4" style="margin-top:4rem; margin-right:6rem;"><span class="text-primary" th:text="${user != null} ? ${#strings.capitalize(user.username)}"></span>'s Shopping Cart</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container background1" style="padding:1rem; margin-top:30px;">
+            <div class="row">
+                <div class="col-sm-6 text-left">
+                    <a class="btn btn-warning" th:href="@{/destinationList}"><i class="fas fa-shopping-cart"></i> Continue Booking</a>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <a class="btn btn-success" th:href="@{/checkout(id=${shoppingCart.id})}"><i class="fas fa-check"></i> Check Out</a>
+                </div>
+                    <br />
+
+            </div>
+
+                    <br/>
+                    <br/>
+
+            <div class="row" style="margin-top:30px;">
+                <div class="col-sm-8"><h5>Products</h5></div>
+                <div class="col-sm-2"><h5>Price</h5></div>
+                <div class="col-sm-2"><h5>Quantity</h5></div>
+            </div>
+
+
+<!--                        Display items in the cart-->
+            <hr/>
+<!--            <div class="row" th:each="cartItem : ${cartItemList}">-->
+                <form th:action="@{/shoppingCart/updateCartItem}" method="post">
+                    <div class="row" th:each="cartItem : ${cartItemList}">
+<!--                    <hr/>-->
+                    <div class="col-sm-2">
+                        <a th:href="@{/locationDetails(id=${cartItem.location.id})}">
+<!--                                        Image thumbnail-->
+                            <img class="img-thumbnail location-details" th:src="@{/images/location/}+${cartItem.location.id}+'.jpg'" />
+                        </a>
+
+                    </div>
+                        <div class="col-sm-2">
+<!--                            <a th:href="@{locationDetails?id}+${cartItem.location.id}">-->
+                            <p><span th:text="${cartItem.qty}" style="font-size:18px; color:darkred;"></span><i class="fas fa-ticket-alt" style="margin-right:5px;margin-left:4px;"></i>
+                                Tickets for <span th:text="${cartItem.location.name}"></span></p>
+                           <p th:if="${cartItem.location.nrOfTickets==0}" style="color:darkred;">Tickets Unavailable</p>
+
+                        </div>
+                        <div class="col-sm-2">
+                            <a th:href="@{/shoppingCart/removeItem(id=${cartItem.id})}">Delete item</a>
+<!--                            <a th:href="@{/removeCreditCard(id=${userPayment.id})}"><i class="fas fa-times"></i>Remove</a>-->
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+                    <div class="col-sm-2">
+                        <h5 style="color:#db3208; font-size:large;">$<span th:text="${cartItem.location.bookingPrice}"></span></h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <input hidden="hidden" name="id" th:value="${cartItem.id}"/>
+                        <input th:id="${cartItem.id}" th:name="qty" class="form-control form-control-sm cartItemQty"
+                               th:value="${cartItem.qty}" />
+                        <br/>
+<!--                        <button display="none"  th:id="'update-item-'+${cartItem.id}"-->
+<!--                                type="submit" class="btn btn-warning btn-sm" style="margin-left:6rem; margin-top:-20px;"> Update</button>-->
+                    </div>
+                    </div>
+                </form>
+<!--            </div>-->
+
+            <hr />
+            <div class="row" style="margin-top:15px;">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4 text-right"><strong style="font-size:large;">Total price:
+<!--                               (<span th:text="${#Lists.size(cartItemList)}"> </span>-->
+<!--                        items):-->
+                </strong>
+                    <span style="color:#db3208; font-size:large;">€<span th:text="${shoppingCart.grandTotal}"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div th:replace="common/header :: footer"/>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>
