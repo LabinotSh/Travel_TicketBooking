@@ -5,6 +5,7 @@ import com.fiek.travelGuide.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,16 @@ public class LocationServiceImpl implements LocationService{
     }
 
     public List<Location> findAll(){
-        return (List<Location>) locationRepository.findAll();
+        List<Location> locationList =  (List<Location>) locationRepository.findAll();
+        List<Location> activeLocations = new ArrayList<>();
+
+        for(Location location : locationList){
+            if(location.isActive()){
+                activeLocations.add(location);
+            }
+        }
+        return activeLocations;
+
     }
 
     @Override
@@ -33,6 +43,32 @@ public class LocationServiceImpl implements LocationService{
         return locationRepository.getOne(id);
     }
 
+    @Override
+    public List<Location> findByMunicipality(String municipality) {
+        List<Location> locationList = locationRepository.findByMunicipality(municipality);
+
+        List<Location> activeLocations = new ArrayList<>();
+
+        for(Location location : locationList){
+            if(location.isActive()){
+                activeLocations.add(location);
+            }
+        }
+        return activeLocations;
+    }
+
+    @Override
+    public List<Location> blurrySearch(String name){
+        List<Location> locationList = locationRepository.findByNameContaining(name);
+
+        List<Location> activeLocations = new ArrayList<>();
+        for(Location location : locationList){
+            if(location.isActive()){
+                activeLocations.add(location);
+            }
+        }
+        return activeLocations;
+    }
 
 
 }

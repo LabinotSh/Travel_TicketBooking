@@ -3,6 +3,7 @@ package com.fiek.travelGuide.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -19,13 +20,11 @@ public class ShippingAddress {
     private String shippingAddressCountry;
     private String shippingAddressZipCode;
 
-
-
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @EqualsAndHashCode.Exclude
     private Order order;
 

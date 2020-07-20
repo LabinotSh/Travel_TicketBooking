@@ -34,6 +34,10 @@ public class LocationServiceImpl implements LocationService{
         return locationRepository.findById(id);
     }
 
+    @Override
+    public void removeOne(Long id) {
+        locationRepository.deleteById(id);
+    }
 
 
 }

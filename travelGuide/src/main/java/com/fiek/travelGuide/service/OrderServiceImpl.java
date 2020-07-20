@@ -2,9 +2,11 @@ package com.fiek.travelGuide.service;
 
 import com.fiek.travelGuide.domain.*;
 import com.fiek.travelGuide.repository.OrderRepository;
+import com.fiek.travelGuide.repository.ShippingAddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
@@ -15,17 +17,22 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     private OrderRepository orderRepository;
 
+    //Added
+    @Autowired
+    private ShippingAddressRepository shippingAddressRepository;
+
     @Autowired
     private CartItemService cartItemService;
 
     @Override
-    public synchronized Order createOrder(ShoppingCart shoppingCart, ShippingAddress shippingAddress, BillingAddress billingAddress, Payment payment, String shippingMethod, User user) {
+    @Transactional
+    public synchronized Order createOrder(ShoppingCart shoppingCart, ShippingAddress shippingAddress, String shippingMethod, User user,Payment payment) {
 
        Order order = new Order();
-       order.setBilingAddress(billingAddress);
+//       order.setBilingAddress(billingAddress);
        order.setOrderStatus("created");
-       order.setPayment(payment);
-       order.setShippingAddress(shippingAddress);
+       //order.setPayment(payment);
+       //order.setShippingAddress(shippingAddress);
        order.setShippingMethod(shippingMethod);
 
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
@@ -39,13 +46,20 @@ public class OrderServiceImpl implements OrderService{
         order.setOrderDate(Calendar.getInstance().getTime());
         order.setOrderTotal(shoppingCart.getGrandTotal());
 
-        shippingAddress.setOrder(order);
-        billingAddress.setOrder(order);
-        payment.setOrder(order);
+//        shippingAddress.setOrder(order);
+//        shippingAddress.setUser(user);
+//        shippingAddressRepository.save(shippingAddress);
+//        billingAddress.setOrder(order);
+//        payment.setOrder(order);
         order.setUser(user);
-
         order = orderRepository.save(order);
 
+        if(shippingAddress == null || order.getShippingAddress()== null || shippingMethod == null || payment == null) {
+            order.setShippingAddress(shippingAddress);
+            order.setShippingMethod(order.getShippingMethod());
+            //order.setPayment(order.getPayment());
+            order = orderRepository.save(order);
+        }
         return order;
     }
 

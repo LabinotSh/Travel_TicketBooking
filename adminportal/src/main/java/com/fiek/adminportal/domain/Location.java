@@ -22,7 +22,7 @@ public class Location {
     private Long bookingPrice;
     private String municipality;
     private int nrOfTickets;
-
+    private boolean active=true;
     //Added
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date bookingDate;
@@ -41,10 +41,83 @@ public class Location {
     @Transient
     private MultipartFile locationImage;
 
+    @Transient
+    private MultipartFile locationImage1;
+
+    @Transient
+    private MultipartFile locationImage2;
+
+    @Transient
+    private MultipartFile locationImage3;
+    @Transient
+    private MultipartFile locationImage4;
+
     public Location(){
     }
 
+    public Location(Long id, String name, String address, Long bookingPrice, String municipality, int nrOfTickets, boolean active, Date bookingDate, String description, List<LocationToCartItem> locationToCartItemList, MultipartFile locationImage, MultipartFile locationImage1, MultipartFile locationImage2, MultipartFile locationImage3, MultipartFile locationImage4) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.bookingPrice = bookingPrice;
+        this.municipality = municipality;
+        this.nrOfTickets = nrOfTickets;
+        this.active = active;
+        this.bookingDate = bookingDate;
+        this.description = description;
+        this.locationToCartItemList = locationToCartItemList;
+        this.locationImage = locationImage;
+        this.locationImage1 = locationImage1;
+        this.locationImage2 = locationImage2;
+        this.locationImage3 = locationImage3;
+        this.locationImage4 = locationImage4;
+    }
 
+    public MultipartFile getLocationImage4() {
+        return locationImage4;
+    }
+
+    public void setLocationImage4(MultipartFile locationImage4) {
+        this.locationImage4 = locationImage4;
+    }
+
+    public MultipartFile getLocationImage1() {
+        return locationImage1;
+    }
+
+    public void setLocationImage1(MultipartFile locationImage1) {
+        this.locationImage1 = locationImage1;
+    }
+
+    public MultipartFile getLocationImage2() {
+        return locationImage2;
+    }
+
+    public void setLocationImage2(MultipartFile locationImage2) {
+        this.locationImage2 = locationImage2;
+    }
+
+    public MultipartFile getLocationImage3() {
+        return locationImage3;
+    }
+
+    public void setLocationImage3(MultipartFile locationImage3) {
+        this.locationImage3 = locationImage3;
+    }
+
+    public Location(Long id, String name, String address, Long bookingPrice, String municipality, int nrOfTickets, boolean active, Date bookingDate, String description, List<LocationToCartItem> locationToCartItemList, MultipartFile locationImage) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.bookingPrice = bookingPrice;
+        this.municipality = municipality;
+        this.nrOfTickets = nrOfTickets;
+        this.active = active;
+        this.bookingDate = bookingDate;
+        this.description = description;
+        this.locationToCartItemList = locationToCartItemList;
+        this.locationImage = locationImage;
+    }
 
     public Location(Long id, String name, String address, Long bookingPrice, String municipality, String description, int nrOfTickets, List<LocationToCartItem> locationToCartItemList, MultipartFile locationImage) {
         this.id = id;
@@ -56,6 +129,22 @@ public class Location {
         this.nrOfTickets = nrOfTickets;
         this.locationToCartItemList = locationToCartItemList;
         this.locationImage = locationImage;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     public List<LocationToCartItem> getLocationToCartItemList() {

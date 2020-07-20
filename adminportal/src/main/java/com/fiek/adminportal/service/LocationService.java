@@ -15,4 +15,6 @@ public interface LocationService {
 
     Optional<Location> findById(Long id);
 
+    void removeOne(Long id);
+
 }

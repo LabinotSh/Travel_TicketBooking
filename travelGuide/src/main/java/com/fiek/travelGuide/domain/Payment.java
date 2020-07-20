@@ -11,7 +11,7 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
     private String type;
     private String cardName;
     private String cardNumber;
@@ -31,7 +31,7 @@ public class Payment {
 
     }
 
-    public Payment(Long id, String type, String cardName, String cardNumber, int expiryMonth, int expiryYear, int cvc, String holderName, Order order, UserBilling userBilling) {
+    public Payment(String id, String type, String cardName, String cardNumber, int expiryMonth, int expiryYear, int cvc, String holderName, Order order, UserBilling userBilling) {
         this.id = id;
         this.type = type;
         this.cardName = cardName;
@@ -52,11 +52,11 @@ public class Payment {
         this.order = order;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

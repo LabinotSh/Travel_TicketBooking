@@ -30,7 +30,7 @@ public class TravelGuideApplication  implements CommandLineRunner {
 		user1.setLastName("Sherifi");
 		user1.setUsername("labinot");
 		user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
-		user1.setEmail("willsherifi@gmail.com");
+		user1.setEmail("sherifilabinot@gmail.com");
 		Set<UserRole> userRoles = new HashSet<>();
 		Role role1 = new Role();
 		role1.setRoleId(1);

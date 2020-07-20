@@ -1,0 +1,105 @@
+ .tab-content {
+  min-height: 30rem;
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+
+.login-form-1{
+    padding: 3%;
+    box-shadow: 0 5px 8px 0 rgba(192, 192, 192, 0.15), 0 9px 26px 0 rgba(47, 79, 79, 0.20);
+    border-radius:1rem;
+    opacity:0.90;
+}
+
+ .module {
+  background-color: #ffffff;
+  text-align:center;
+  height: 100px;
+  margin: 5px 0 0 20px;
+  opacity:0.75;
+}
+
+.top {
+  color: white;
+  margin: 0;
+  padding: 20px;
+  margin-top: 20px;
+  font-weight:lighter;
+   font-family: "Brush Script MT", cursive; font-size: 44px;
+   font-style: normal; font-variant: normal;
+    font-weight: 600;
+   text-decoration: underline;
+   border-radius:3rem;
+}
+.my{
+margin-top:3rem; font-weight:lighter;
+text-shadow: 2px 2px 4px #000000;
+}
+
+ body {
+  background:
+   linear-gradient(
+      rgba(0, 0, 0, 0.38),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url(/images/gjeravica.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  }
+
+  .hover:hover{
+  opacity:1;
+  }
+
+.login-form{
+          background:#ffffff;
+          margin-bottom: 50px;
+          padding: 50px;
+          border-radius: 50px;
+          color: black;
+          box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.80);
+   }
+
+.c1{
+width:100%; margin-bottom:40px; margin-top:10px;
+
+}
+
+.nav-format{
+border-radius:.5rem; border:1px solid #DCDCDC; opacity:0.99;}
+
+.br{
+border-radius:1rem;}
+
+.span{
+color:dark-blue; font-size:15px;
+}
+
+.tab-content{border-radius:2rem;}
+
+.card1{
+background-color:#ededed; opacity:1;}
+
+.edit{
+text-align:center; margin-bottom:.5rem; padding:.2rem;}
+
+.hr{
+background-color:#4682B4;}
+
+.help{
+color:#828282;}
+
+.np{
+color:red; font-size:14px;}
+
+.sa{
+width:20%; border-radius:2rem;}
+
+.ch{
+background-color:#DCDCDC; text-align:center;}
+
+.pp{
+margin-right:10px;}
+
+.o{
+margin-left:5px;}

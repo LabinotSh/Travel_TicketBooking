@@ -27,14 +27,13 @@ public class BillingAddress {
 
     }
 
-    public BillingAddress(Long id, String billingAddressName, String billingAddressStreet, String billingAddressCity, String billingAddressCountry, String billingAddressZipCode, Order order) {
+    public BillingAddress(Long id, String billingAddressName, String billingAddressStreet, String billingAddressCity, String billingAddressCountry, String billingAddressZipCode) {
         this.id = id;
         this.billingAddressName = billingAddressName;
         this.billingAddressStreet = billingAddressStreet;
         this.billingAddressCity = billingAddressCity;
         this.billingAddressCountry = billingAddressCountry;
         this.billingAddressZipCode = billingAddressZipCode;
-        this.order = order;
     }
 
     public String getBillingAddressName() {

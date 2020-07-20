@@ -2,17 +2,103 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="common/header :: common-header"/>
 
-<body>
+<style>
+
+    /* Social Icons */
+.about-icons {margin:48px 0px 48px 0px ;}
+.about-icons i{margin-right: 10px;padding: 0px; font-size:35px;color:#323232;box-shadow: 0 0 3px rgba(0, 0, 0, .2);}
+.about-icons li {margin:0px;padding:0;display:inline-block;}
+#social-fb:hover {color: #3B5998;transition:all .001s;}
+ #social-tw:hover {color: #4099FF;transition:all .001s;}
+ #social-gp:hover {color: #d34836;transition:all .001s;}
+ #social-em:hover {color: #f39c12;transition:all .001s;}
+</style>
+
+<body id="page-top">
 <div th:replace="common/header :: navbar"/>
 
-<!--        <hr  style="color:#adadad;"/>-->
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold">Welcome to the admin portal.</h1>
+                <hr class="divider my-4" />
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-75 font-weight-light mb-5">Admin portal for the Travel&Booking page for Kosovo's best touristic locations.
+                    This serves as an entry point to manage with these locations. </p>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find out more!</a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Locations Section-->
+<section class="page-section bg-primary" id="about">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="text-white mt-0">Locations...</h2>
+                <hr class="divider light my-4" />
+                <p class="text-white-50 mb-4">This part is for managing the locations and informations about them.<br/>
+                    You can choose the actions to perform on these items
+                </p>
+                <a class="btn btn-light btn-xl js-scroll-trigger" th:href="@{/location/add}">Add a location</a>
+                <a class="btn btn-light btn-xl js-scroll-trigger" th:href="@{/location/locationList}">View Location List</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services-->
+<section class="page-section" id="services">
+    <div class="container">
+        <h2 class="text-center mt-0">About KosovaTickets</h2>
+        <hr class="divider my-4" />
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="about-title clearfix">
+                    <p class="about-paddingB">
+                    <p>
+                        KosovaTickets is a site that offers opportunities to enjoy Kosovo's loveliest touristic places.
+                        Part of our mission is to make it easier for everyone to experience Kosovo's amazing touristic points with great prices.</p>
 
-<!-- Site footer -->
-<!--<div th:replace="common/header :: footer"/>-->
+                    <p> By investing in technology that takes the friction out of travel, we seamlessly connect everyone who would like to have memorable experiences and much more. </p>
+                    <p>As one of the Kosovo’s largest travel marketplaces for both established brands and entrepreneurs of all sizes, we enable properties around the country of Kosovo to reach a global audience and grow their businesses.</p>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
+                    </p>
+                    <div class="about-icons">
+                        <ul>
+                            <li><a href="https://www.facebook.com/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a> </li>
+                            <li><a href="https://twitter.com/"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a> </li>
+                            <li> <a href="https://plus.google.com/"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a> </li>
+                            <li> <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a> </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+<!--            <div class="col-md-5 col-sm-6" style="background: url(/images/kosova.jpg) no-repeat center center scroll;">-->
+<!--                <div class="about-img">-->
+<!--                    &lt;!&ndash;                            <img src="/images/mid-logo.jpg" alt="">&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </div>
+</section>
+
+<!-- Footer-->
+<div th:replace="common/header :: footer"/>
+
 <div th:replace="common/header :: body-bottom-scripts"/>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<!-- Core theme JS-->
+<script th:src="@{/js/scriptss.js}"></script>
 
 </body>
 </html>

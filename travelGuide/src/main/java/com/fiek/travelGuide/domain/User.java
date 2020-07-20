@@ -42,22 +42,25 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserPayment> userPaymentList;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
-//    ///Added later -- ????
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Ticket> ticketList;
-//
-//    //Added later ????
-//    public List<Ticket> getTicketList() {
-//        return ticketList;
-//    }
-//
-//    public void setTicketList(List<Ticket> ticketList) {
-//        this.ticketList = ticketList;
-//    }
+////    ///Added later -- ????
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Ticket> ticketList;
+
+    //Added later ????
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
+    }
 
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
@@ -72,6 +75,14 @@ public class User implements UserDetails {
         Set<GrantedAuthority> authorities = new HashSet<>();
         userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
         return authorities;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
     public List<UserShipping> getUserShippingList() {

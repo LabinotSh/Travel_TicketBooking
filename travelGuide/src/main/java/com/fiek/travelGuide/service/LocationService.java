@@ -12,4 +12,7 @@ public interface LocationService {
     Optional<Location> findById(Long id);
 
     Location getOne(Long id);
+
+    List<Location> findByMunicipality(String municipality);
+    List<Location> blurrySearch(String name);
 }

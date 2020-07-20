@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -38,14 +39,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/login",
             "/admin",
             "/fonts/**",
-//            "/destinationList",
+            "/destinationList",
+            "/searchByMunicipality",
+            "/searchLocation"
 
     };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http
-                .authorizeRequests().
+//        http
+//                .headers()
+//                .addHeaderWriter(new StaticHeadersWriter("Content-Security-Policy", "default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; "));
+
+//        .headers()
+//                .contentSecurityPolicy("img-src 'self' https://*.googleusercontent.com/ https://*.paypalobjects.com https://ak1s.abmr.net " +
+//                        "https://ak1s.mathtag.com https://akamai.mathtag.com https://ak1.abmr.net https://*.paypal.com;");
+        http.authorizeRequests().
 //                antMatchers("/**").
                 antMatchers(PUBLIC_MATCHERS).
                 permitAll().anyRequest().authenticated();

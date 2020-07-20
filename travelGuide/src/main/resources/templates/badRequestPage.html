@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<link rel="stylesheet" href="/css/shp.css"/>
+
+<body>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+<!--Container-->
+<div class="container-fluid gg">
+        <div class="gg text-dark" style="margin-top:10rem; margin-bottom:25rem;">
+            <div class="container">
+                <div class="row">
+                   <div class="col">
+                       <h5>Bad request. The page you requested is invalid.<br/><br/>
+                           Click <a th:href="@{/}">here</a>
+                           to return to the home page. </h5>
+                   </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div th:replace="common/header :: footer"/>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

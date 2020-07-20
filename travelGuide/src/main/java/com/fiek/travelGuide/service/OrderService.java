@@ -6,9 +6,7 @@ public interface OrderService {
 
     Order createOrder(ShoppingCart shoppingCart,
                       ShippingAddress shippingAddress,
-                      BillingAddress billingAddress,
-                      Payment payment,
-                      String shippingMethod, User user);
+                      String shippingMethod, User user,Payment payment);
 
     Order getOne(Long id);
 }

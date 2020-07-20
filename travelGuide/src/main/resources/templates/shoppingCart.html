@@ -1,134 +1,132 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="common/header :: common-header"/>
-<style>
-
-.gray-bg {
-          background: #F0F0F0 !important;
-          }
-
-.gg {
-background: #D3D3D3 !important;
-}
-
-.background1 {
-background-image: linear-gradient(to bottom, rgba(255,255,255,0.7)0%,rgba(255,255,255,0.7) 80%), url("/images/bag.jpg");
- background-size:cover;
-
-<!-- max-width: 1130px;-->
-}
-</style>
+<link rel="stylesheet" href="/css/shp.css"/>
 
 <body>
 <!-- Static navbar -->
 <div th:replace="common/header :: navbar"/>
 <!--Container-->
-<div class="container-fluid" style="width:95%; margin-bottom:50px;">
 
+<div class="container-fluid" id="wave" style="width:100%; margin-top:2rem;">
+    <div class="row overlay text-left">
+        <div class="col-3 mt-10">
+            <img class="img-fluid" src="/images/shop1.png"/>
+        </div>
+        <div class="col-9 mt-10 text-left">
+            <h2 class="display-4 user">
+                <span class="text-primary" th:text="${user != null} ? ${#strings.capitalize(user.username)}"></span>'s
+                Shopping Cart</h2>
+        </div>
+    </div>
+</div>
 
-        <div th:if="${emptyCart}" class="alert alert-warning">
-            Oops, your cart is empty. Wanna book something?
+<div class="container-fluid c1">
+    <div class="container-fluid c2">
+        <div class="row">
+            <div class="col-6 text-left">
+                <a class="btn text-white color" th:href="@{/destinationList}"><i class="fas fa-shopping-cart"></i>
+                    Continue Booking</a>
+            </div>
+            <div class="col-6 text-right">
+                <a class="btn btn-default text-white color2" th:href="@{/checkout(id=${shoppingCart.id})}"><i
+                        class="fas fa-check"></i> Check Out</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid background1">
+<!--        <br/>-->
+        <div class="row  mb-0 r1">
+            <div th:if="${emptyCart}" class="alert alert-warning">
+                Oops, your cart is empty. Wanna book something?
+            </div>
+            <div class="col-md-8"><h5 class="items">Product Description</h5></div>
+            <div class="col-md-2"><h5 class="items">Price</h5></div>
+            <div class="col-md-2"><h5 class="items">Quantity</h5></div>
         </div>
 
+        <!--                        Display items in the cart-->
+        <hr class="hr"/>
+        <!--            <div class="row" th:each="cartItem : ${cartItemList}">-->
+        <form th:action="@{/shoppingCart/updateCartItem}" method="post">
+            <div class="row" th:each="cartItem : ${cartItemList}">
+                <!--                    <hr/>-->
+                <div class="col-md-2">
+                    <a th:href="@{/locationDetails(id=${cartItem.location.id})}">
+                        <img class="img-thumbnail location-details"
+                             th:src="@{/images/location/}+${cartItem.location.id}+'.jpg'"/>
+                    </a>
 
-
-    <div class="gray-bg" style="border-radius:2rem;">
-        <div class="gg" style="margin-top:20px; border-radius:2rem;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <img class="img-responsive" src="/images/shop.png" />
-                    </div>
-                    <div class="col-sm-10 mt-10 text-center">
-                        <h4 class="display-4" style="margin-top:4rem; margin-right:6rem;"><span class="text-primary" th:text="${user != null} ? ${#strings.capitalize(user.username)}"></span>'s Shopping Cart</h4>
-                    </div>
                 </div>
-            </div>
-        </div>
+                <div class="col-md-4 pala">
+                    <p class="mb-0">
+                        <img class="img-fluid" src="/images/tck.png"/>
+                        <span th:text="${cartItem.qty}" class="tck"></span>
+                        Ticket/s for <span th:text="${cartItem.location.name}" class="ff"></span></p>
+
+                    <small class="hidden mt-0">Booked for the date: <span
+                            th:text="${#dates.format(cartItem.ticket.bookingDate, 'dd-MMM-yyyy')}"
+                            class="darr mt-0"></span></small>
+                    <p th:if="${cartItem.location.nrOfTickets==0}" class="text-danger mt-0">Tickets Unavailable</p>
 
 
-        <div class="container background1" style="padding:1rem; margin-top:30px;">
-            <div class="row">
-                <div class="col-sm-6 text-left">
-                    <a class="btn btn-warning" th:href="@{/destinationList}"><i class="fas fa-shopping-cart"></i> Continue Booking</a>
                 </div>
-                <div class="col-sm-6 text-right">
-                    <a class="btn btn-success" th:href="@{/checkout(id=${shoppingCart.id})}"><i class="fas fa-check"></i> Check Out</a>
+                <div class="col-md-2 pala2">
+                    <a th:href="@{/shoppingCart/removeItem(id=${cartItem.id})}" class="text-danger pala">
+                        <i class="fas fa-times"></i> Delete item</a>
                 </div>
-                    <br />
 
-            </div>
-
-                    <br/>
-                    <br/>
-
-            <div class="row" style="margin-top:30px;">
-                <div class="col-sm-8"><h5>Products</h5></div>
-                <div class="col-sm-2"><h5>Price</h5></div>
-                <div class="col-sm-2"><h5>Quantity</h5></div>
-            </div>
-
-
-<!--                        Display items in the cart-->
-            <hr/>
-<!--            <div class="row" th:each="cartItem : ${cartItemList}">-->
-                <form th:action="@{/shoppingCart/updateCartItem}" method="post">
-                    <div class="row" th:each="cartItem : ${cartItemList}">
-<!--                    <hr/>-->
-                    <div class="col-sm-2">
-                        <a th:href="@{/locationDetails(id=${cartItem.location.id})}">
-<!--                                        Image thumbnail-->
-                            <img class="img-thumbnail location-details" th:src="@{/images/location/}+${cartItem.location.id}+'.jpg'" />
-                        </a>
-
-                    </div>
-                        <div class="col-sm-2">
-<!--                            <a th:href="@{locationDetails?id}+${cartItem.location.id}">-->
-                            <p><span th:text="${cartItem.qty}" style="font-size:18px; color:darkred;"></span><i class="fas fa-ticket-alt" style="margin-right:5px;margin-left:4px;"></i>
-                                Tickets for <span th:text="${cartItem.location.name}"></span></p>
-                           <p th:if="${cartItem.location.nrOfTickets==0}" style="color:darkred;">Tickets Unavailable</p>
-
-                        </div>
-                        <div class="col-sm-2">
-                            <a th:href="@{/shoppingCart/removeItem(id=${cartItem.id})}">Delete item</a>
-<!--                            <a th:href="@{/removeCreditCard(id=${userPayment.id})}"><i class="fas fa-times"></i>Remove</a>-->
-                        </div>
-                        <div class="col-sm-2">
-
-                        </div>
-                    <div class="col-sm-2">
-                        <h5 style="color:#db3208; font-size:large;">$<span th:text="${cartItem.location.bookingPrice}"></span></h5>
-                    </div>
-                    <div class="col-sm-2">
+                <div class="col-md-2 pala1">
+                    <h5 class="eu">€<span th:text="${cartItem.location.bookingPrice}"></span></h5>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group w-75">
                         <input hidden="hidden" name="id" th:value="${cartItem.id}"/>
                         <input th:id="${cartItem.id}" th:name="qty" class="form-control form-control-sm cartItemQty"
-                               th:value="${cartItem.qty}" />
-                        <br/>
-<!--                        <button display="none"  th:id="'update-item-'+${cartItem.id}"-->
-<!--                                type="submit" class="btn btn-warning btn-sm" style="margin-left:6rem; margin-top:-20px;"> Update</button>-->
+                               th:value="${cartItem.qty}"/>
+                        <div class="text-center mt-1">
+                            <button display="none" th:id="'update-item-'+${cartItem.id}"
+                                    type="submit" class="btn btn-sm change text-white"> Change
+                            </button>
+                        </div>
                     </div>
-                    </div>
-                </form>
-<!--            </div>-->
+                </div>
+            </div>
+            <hr class="hr"/>
+        </form>
+        <!--            </div>-->
 
-            <hr />
-            <div class="row" style="margin-top:15px;">
-                <div class="col-sm-4">
-                </div>
-                <div class="col-sm-4">
-                </div>
-                <div class="col-sm-4 text-right"><strong style="font-size:large;">Total price:
-<!--                               (<span th:text="${#Lists.size(cartItemList)}"> </span>-->
-<!--                        items):-->
+<!--        <hr class="hr"/>-->
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 text-right t5">
+                <strong class="tp">Total price
+                    (<span th:text="${#lists.size(cartItemList)}"> </span>
+                    items):
                 </strong>
-                    <span style="color:#db3208; font-size:large;">€<span th:text="${shoppingCart.grandTotal}"></span>
+                <span class="euro">€<span th:text="${shoppingCart.grandTotal}"></span>
                     </span>
-                </div>
             </div>
         </div>
 
     </div>
-
+    <div class="container c0 mt-4">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 text-center col1">
+                <div class="pay">Verified payment methods</div>
+                <div>
+                    <img class="img-fluid" th:src="@{/images/master.png}"/>
+                    <img class="img-fluid" th:src="@{/images/visa.png}"/>
+                    <img class="img-fluid" th:src="@{/images/paypal.png}"/>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

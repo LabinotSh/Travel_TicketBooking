@@ -1,11 +1,23 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="common/header :: common-header"/>
-
+<link rel="stylesheet" href="/css/add.css"/>
 
 <style>
+body{
+background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url(/images/sharr.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
     .login-form-1{
+    margin-top:3rem;
+    margin-bottom:3rem;
     padding: 5%;
+background: rgba(235,233,249,1);
+background: -moz-linear-gradient(left, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 50%, rgba(206,199,236,1) 51%, rgba(193,191,234,1) 100%);
+
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
     border-radius:1rem;
 }
@@ -22,7 +34,7 @@
             <div class="login-form-1">
                 <form class="form-horizontal" th:action="@{/location/updateLocation}" method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <legend class="center-block" style="text-align:center;">Update Location Information</legend>
+                        <legend class="center-block" style="text-align:center; color:rgba(244, 98, 58, 0.9);">Update Location Information</legend>
 
                         <input hidden="hidden" name="id" th:value="${location.id}"/>
 
@@ -80,19 +92,64 @@
                                 Number of tickets.
                             </small>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="status">Status</label>
+                            <div class="col-md-8">
+                                <label><input type="radio" value="true" id="status" name="active" th:checked="${location.active}" />Active</label>
+                                <label><input type="radio" value="false" name="active" th:checked="${!location.active}"/>Inactive </label>
+                            </div>
+                        </div>
                         <!--                  upload image-->
                         <div class="form-group row">
+                            <div class="col-4">
                             <label for="locationImage">Location picture</label>
                             <input type="file" class="form-control-file" id="locationImage" name="locationImage" th:value="${location.locationImage}">
                             <small id="locationImageHelp" class="text-danger">
                                 Upload a picture of the location.
                             </small>
+                            </div>
+
+                            <div class="col-4">
+                            <label for="locationImage1">Location picture 1</label>
+                            <input type="file" class="form-control-file" id="locationImage1" name="locationImage1" th:value="${location.locationImage1}">
+                            <small id="locationImage1Help" class="text-danger">
+                                Picture 2
+                            </small>
+                            </div>
+                            <div class="col-4">
+                                <label for="locationImage2">Location picture 2</label>
+                                <input type="file" class="form-control-file" id="locationImage2" name="locationImage2" th:value="${location.locationImage2}">
+                                <small id="locationImage2Help" class="text-danger">
+                                    Picture 3
+                                </small>
+                            </div>
                         </div>
 
                         <div class="form-group row">
+                            <div class="col-6">
+                            <label for="locationImage3">Location picture 3</label>
+                            <input type="file" class="form-control-file" id="locationImage3" name="locationImage3" th:value="${location.locationImage3}">
+                            <small id="locationImage3Help" class="text-danger">
+                                Picture 4
+                            </small>
+                            </div>
+                            <div class="col-6">
+                                <label for="locationImage4">Location picture 4</label>
+                                <input type="file" class="form-control-file" id="locationImage4" name="locationImage4" th:value="${location.locationImage4}">
+                                <small id="locationImage4Help" class="text-danger">
+                                    Picture 5
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row text-center">
+                            <div class="col-3"></div>
+                            <div class="col-3">
                             <button type="submit" class="btn btn-primary" style="margin-right:5px;">Update Location</button>
-                            <br/>
+                            </div>
+                            <div class="col-3">
                             <a class="btn btn-danger" th:href="@{/location/locationInfo(id=${location.id})}">Cancel</a>
+                            </div>
                         </div>
                     </fieldset>
                 </form>

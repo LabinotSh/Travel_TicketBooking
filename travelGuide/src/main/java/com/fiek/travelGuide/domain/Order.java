@@ -54,6 +54,10 @@ public class Order {
         this.user = user;
     }
 
+    public void setBillingAddress(BillingAddress billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
     public BillingAddress getBillingAddress() {
         return billingAddress;
     }

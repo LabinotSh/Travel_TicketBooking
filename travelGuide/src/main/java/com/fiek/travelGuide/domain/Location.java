@@ -26,20 +26,33 @@ public class Location {
     @Column(columnDefinition = "text")
     private String description;
     private int nrOfTickets;
+    private boolean active=true;
 
-    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
-    private Date bookingDate;
-
-    public Date getBookingDate() {
-        return bookingDate;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setBookingDate(Date bookingDate) {
-        this.bookingDate = bookingDate;
+    public void setActive(boolean active) {
+        this.active = active;
     }
-/// Added later -- -??? still ??
-//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "location")
-//    private Set<Ticket> ticketSet;
+
+
+//    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+////    @Temporal(TemporalType.DATE)
+//    private Date bookingDate;
+//
+//
+//    public Date getBookingDate() {
+//        return bookingDate;
+//    }
+//
+//    public void setBookingDate(Date bookingDate) {
+//        this.bookingDate = bookingDate;
+//    }
+
+    /// Added later -- -??? still ??
+    @OneToOne(cascade = CascadeType.ALL)
+    private Ticket ticket;
 
     @OneToMany(mappedBy = "location")
     @JsonIgnore
@@ -51,7 +64,7 @@ public class Location {
     public Location(){
     }
 
-    public Location(Long id, String name, String address, Long bookingPrice, String municipality, String description, int nrOfTickets, Date bookingDate, List<LocationToCartItem> locationToCartItemList, MultipartFile locationImage) {
+    public Location(Long id, String name, String address, Long bookingPrice, String municipality, String description, int nrOfTickets, List<LocationToCartItem> locationToCartItemList, MultipartFile locationImage) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -59,7 +72,21 @@ public class Location {
         this.municipality = municipality;
         this.description = description;
         this.nrOfTickets = nrOfTickets;
-        this.bookingDate = bookingDate;
+//        this.bookingDate = bookingDate;
+        this.locationToCartItemList = locationToCartItemList;
+        this.locationImage = locationImage;
+    }
+
+    public Location(Long id, String name, String address, Long bookingPrice, String municipality, String description, int nrOfTickets, boolean active, List<LocationToCartItem> locationToCartItemList, MultipartFile locationImage) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.bookingPrice = bookingPrice;
+        this.municipality = municipality;
+        this.description = description;
+        this.nrOfTickets = nrOfTickets;
+        this.active = active;
+//        this.bookingDate = bookingDate;
         this.locationToCartItemList = locationToCartItemList;
         this.locationImage = locationImage;
     }
@@ -72,13 +99,23 @@ public class Location {
     public void setLocationToCartItemList(List<LocationToCartItem> locationToCartItemList) {
         this.locationToCartItemList = locationToCartItemList;
     }
-    //    public Set<Ticket> getTicketSet() {
+
+    //Added
+//        public Set<Ticket> getTicketSet() {
 //        return ticketSet;
 //    }
 //
 //    public void setTicketSet(Set<Ticket> ticketSet) {
 //        this.ticketSet = ticketSet;
 //    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
 
     public String getMunicipality() {
         return municipality;
