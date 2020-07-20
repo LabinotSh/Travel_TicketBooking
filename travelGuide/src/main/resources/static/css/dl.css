@@ -186,7 +186,7 @@ margin-top:2.6rem; margin-left:1rem;}
 .aa{
 border-radius:7rem;
 font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
- font-size:18px;
+font-size:18px;
 background-color: #fc5296;
 background-image: linear-gradient(315deg, #fc5296 0%, #f67062 74%);
 
@@ -203,10 +203,12 @@ border-bottom-left-radius:10%;
 }
 
 @media (max-width: 768px) {
-
  .list-group{
   width:70%;
  }
+ .dd{
+ margin-left:8rem;
+}
 }
 
 

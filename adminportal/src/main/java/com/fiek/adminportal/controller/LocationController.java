@@ -125,6 +125,7 @@ public class LocationController {
         MultipartFile locationImage3 = location.getLocationImage3();
         MultipartFile locationImage4 = location.getLocationImage4();
 
+
         if(locationImage != null || locationImage1 != null || locationImage2 != null || locationImage3 != null || locationImage4 != null){
             try {
                 byte[] bytes = locationImage.getBytes();
@@ -191,7 +192,37 @@ public class LocationController {
     @RequestMapping(value={"/remove"},method = RequestMethod.POST)
     public String remove(@ModelAttribute("id") String id, Model model){
 
-        locationService.removeOne(Long.parseLong(id.substring(8)));
+        Location location = locationService.getOne(Long.parseLong(id.substring(8)));
+       locationService.removeOne(Long.parseLong(id.substring(8)));
+
+        MultipartFile locationImage = location.getLocationImage();
+        MultipartFile locationImage1 = location.getLocationImage1();
+        MultipartFile locationImage2 = location.getLocationImage2();
+        MultipartFile locationImage3 = location.getLocationImage3();
+        MultipartFile locationImage4 = location.getLocationImage4();
+
+        try{
+//            byte[] bytes = locationImage.getBytes();
+//            byte[] bytes1 = locationImage1.getBytes();
+//            byte[] bytes2 = locationImage2.getBytes();
+//            byte[] bytes3 = locationImage3.getBytes();
+//            byte[] bytes4 = locationImage4.getBytes();
+
+            String name = location.getId() + ".jpg";
+            String name1 = 2*(location.getId()) + ".jpg";
+            String name2 = 3*(location.getId()) + ".jpg";
+            String name3 = 4*(location.getId()) + ".jpg";
+            String name4 = 5*(location.getId()) + ".jpg";
+
+            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name));
+            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name1));
+            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name2));
+            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name3));
+            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name4));
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
 
         List<Location> locationList = locationService.findAll();
         model.addAttribute("locationList",locationList);

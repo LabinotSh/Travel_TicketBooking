@@ -1,5 +1,4 @@
 
-
 $(document).ready(function(){
 
   $('.delete-location').on('click' ,function(){

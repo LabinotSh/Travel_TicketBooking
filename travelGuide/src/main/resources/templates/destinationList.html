@@ -47,53 +47,114 @@
                 <h5 class="text-danger">Oops, no result is found. Try something else or try again later.</h5>
             </div>
 
-            <div class="card location-item" data-th-each="location : ${locationList}" style="margin-bottom:2rem;">
-                <div th:if="${location != null}">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <a th:href="@{/locationDetails?id=}+${location.id}">
-                            <img class="img-fluid ima"
-                                 th:src="@{/images/location/}+${location.id}+'.jpg'"
+                        <table class="table" id="locationList">
+                            <thead>
+                            <tr>
+<!--                                <th class="text-dark text-center th">-->
+<!--&lt;!&ndash;                                    Attractions&ndash;&gt;-->
+<!--                                </th>-->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-th-each="location : ${locationList}">
+                                <td>
 
-                            /></a>
-                    </div>
-                    <div class="col-md-7 ml-3">
-<!--                        <div class="card-body">-->
-                            <div class="text-left">
-                            <a th:href="@{/locationDetails?id=}+${location.id}">
-                                <h4 class="h4"
-                                    th:text="${#strings.capitalize(location.name)}"></h4></a>
-                                <span th:text="${location.address}" class="span"></span><br/>
-                            </div>
-                            <!--                                    <span th:text="${location.id}"></span>-->
 
-                            <div class="text-left">
-                            <p th:text="${#strings.abbreviate(location.description,500)}"
-                               class="cut-text"></p>
-                            </div>
+                                    <div class="card location-item">
+                                        <div th:if="${location != null}">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                    <a th:href="@{/locationDetails?id=}+${location.id}">
+                                                        <img class="img-fluid ima"
+                                                             th:src="@{/images/location/}+${location.id}+'.jpg'" /></a>
+                                                </div>
+                                                <div class="col-md-7 ml-3">
+                                                    <!--                        <div class="card-body">-->
+                                                    <div class="text-left">
+                                                        <a th:href="@{/locationDetails?id=}+${location.id}">
+                                                            <h4 class="h4"
+                                                                th:text="${#strings.capitalize(location.name)}"></h4></a>
+                                                        <span th:text="${location.address}" class="span"></span><br/>
+                                                    </div>
+                                                    <!--                                    <span th:text="${location.id}"></span>-->
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text-left dd">
-                                        <span class="sign">€</span>
-                                        <span th:text="${#numbers.formatDecimal(location.bookingPrice,0,'COMMA',2,'POINT')}"
-                                              class="ss"></span></div>
-                                </div>
+                                                    <div class="text-left">
+                                                        <p th:text="${#strings.abbreviate(location.description,500)}"
+                                                           class="cut-text"></p>
+                                                    </div>
 
-                                <div class="col-md-6">
-                                    <div class="text-center">
-                                        <a class="btn btn-sm text-white aa"
-                                           th:href="@{/locationDetails?id=}+${location.id}">Get
-                                            Tickets
-                                            <i class="fa fa-arrow-right i"></i></a>
+                                                    <div class="row">
+                                                        <div class="col-md-6 text-left dd">
+                                                                <span class="sign">€</span>
+                                                                <span th:text="${#numbers.formatDecimal(location.bookingPrice,0,'COMMA',2,'POINT')}"
+                                                                      class="ss"></span>
+                                                        </div>
+
+                                                        <div class="col-md-6 text-center c11">
+                                                                <a class="btn btn-sm text-white aa"
+                                                                   th:href="@{/locationDetails?id=}+${location.id}">Get
+                                                                    Tickets
+                                                                    <i class="fa fa-arrow-right i"></i></a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+<!--            <div class="card location-item" data-th-each="location : ${locationList}" style="margin-bottom:2rem;">-->
+<!--                <div th:if="${location != null}">-->
+<!--                <div class="row no-gutters">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <a th:href="@{/locationDetails?id=}+${location.id}">-->
+<!--                            <img class="img-fluid ima"-->
+<!--                                 th:src="@{/images/location/}+${location.id}+'.jpg'" /></a>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-7 ml-3">-->
+<!--&lt;!&ndash;                        <div class="card-body">&ndash;&gt;-->
+<!--                            <div class="text-left">-->
+<!--                            <a th:href="@{/locationDetails?id=}+${location.id}">-->
+<!--                                <h4 class="h4"-->
+<!--                                    th:text="${#strings.capitalize(location.name)}"></h4></a>-->
+<!--                                <span th:text="${location.address}" class="span"></span><br/>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash;                                    <span th:text="${location.id}"></span>&ndash;&gt;-->
+
+<!--                            <div class="text-left">-->
+<!--                            <p th:text="${#strings.abbreviate(location.description,500)}"-->
+<!--                               class="cut-text"></p>-->
+<!--                            </div>-->
+
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="text-left dd">-->
+<!--                                        <span class="sign">€</span>-->
+<!--                                        <span th:text="${#numbers.formatDecimal(location.bookingPrice,0,'COMMA',2,'POINT')}"-->
+<!--                                              class="ss"></span></div>-->
+<!--                                </div>-->
+
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="text-center">-->
+<!--                                        <a class="btn btn-sm text-white aa"-->
+<!--                                           th:href="@{/locationDetails?id=}+${location.id}">Get-->
+<!--                                            Tickets-->
+<!--                                            <i class="fa fa-arrow-right i"></i></a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
 
 <!--            <table class="table table-bordered" id="locationList">-->
@@ -165,10 +226,10 @@
 <div th:replace="common/header :: body-bottom-scripts"/>
 
 
-<!--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>-->
-<!--<script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
-<!--<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>-->
-<!--<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>-->
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
@@ -176,12 +237,12 @@
 <script src="https://cdn.datatables.net/select/2.2.5/js/dataTables.select.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap4.min.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>-->
-<!--<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>-->
-<!--<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>-->
-<!--<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
 <script type="text/javascript" src="/js/dl.js"></script>
 
 </body>
