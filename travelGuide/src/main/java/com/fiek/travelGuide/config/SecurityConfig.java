@@ -41,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/fonts/**",
             "/destinationList",
             "/searchByMunicipality",
-            "/searchLocation"
+            "/searchLocation",
+            "/locationDetails"
 
     };
 

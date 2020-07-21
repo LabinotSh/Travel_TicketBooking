@@ -200,6 +200,7 @@ border-top-right-radius:10%;
 border-bottom-left-radius:10%;
 }
 .ima{
+border-radius:1.5rem;
 }
 
 @media (max-width: 768px) {

@@ -151,13 +151,6 @@ public class HomeController {
     }
 
 
-//    @InitBinder
-//    public void initBinder(WebDataBinder binder) {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        dateFormat.setLenient(false);
-//        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-//    }
-//
     @RequestMapping(value = {"/forgetPassword"})
     public String forgetPassword(HttpServletRequest request,
                                  @ModelAttribute("email") String email,
