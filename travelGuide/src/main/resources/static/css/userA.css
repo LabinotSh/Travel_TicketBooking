@@ -139,8 +139,24 @@ width:40%; border-radius:1rem;
 background-color: #990000;
 background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);}
 
+@media (max-width: 768px) {
 
+}
 
+@media (max-width: 576px) {
+.img1{
+max-height:300px;
+margin-top:1rem;
+margin-left:1.2rem;}
+.img2{
+max-height:300px;
+margin-top:1rem;
+margin-left:1.2rem;}
+.img3{
+max-height:300px;
+margin-top:1rem;
+margin-left:4.5rem;}
+ }
 
 
 

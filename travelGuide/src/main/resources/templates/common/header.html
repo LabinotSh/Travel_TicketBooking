@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
 
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -48,7 +50,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-dark fixed-top">
 
 <!--        <a class="navbar-brand"><img src="images/sma.jpg" class="img-responsive img1"></a>-->
-        <a th:href="@{/}" class="navbar-brand mr-4" style="color:rgba(244, 98, 58, 0.9);">KosovaTickets</a>
+        <a th:href="@{/}" class="navbar-brand mr-4" style="color:rgba(244, 98, 58, 0.9); font-size:23px; font-family: 'Dancing Script', cursive;">KosovaTickets</a>
         <button type="button" class="navbar-toggler bg-light" data-toggle="collapse" data-target="#nav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -96,11 +98,11 @@
             <div class="row">
                 <div class="col-4">
                     <p class="copyright-text text-white" style="font-size:15px;">Copyright &copy; 2020 All Rights Reserved by:
-                    <p><a href="#s"><span class="colorrrr" style="font-size:15px;">KosovaTicket.</span></a></p>
+                    <p><a href="#s"><span class="colorrrr" style="font-size:15px; font-family: 'Dancing Script', cursive;">KosovaTicket.</span></a></p>
                     </p>
                 </div>
                 <div class="col-4 text-center">
-                    <h6 class="colorrrr">Find us on social media.</h6>
+                    <h6>Find us on social media.</h6>
                         <div>
                             <a class="btn-floating btn-fb" type="button" role="button" href="https://www.facebook.com/labinot.sherifi.5">
                                 <i class="fa fa fa-facebook"></i></a>
@@ -112,7 +114,7 @@
                         </div>
                 </div>
                 <div class="col-4 text-center">
-                            <div class="pay text-light">Payment methods</div>
+                            <div class="pay">Payment methods</div>
                             <div>
                                 <img class="img-fluid" th:src="@{/images/paypal.png}"/>
                                 <img class="img-fluid" th:src="@{/images/master.png}"/>

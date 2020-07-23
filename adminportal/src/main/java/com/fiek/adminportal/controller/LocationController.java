@@ -2,10 +2,12 @@ package com.fiek.adminportal.controller;
 
 import com.fiek.adminportal.domain.Location;
 import com.fiek.adminportal.service.LocationService;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.util.FileSystemUtils;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -87,6 +90,12 @@ public class LocationController {
                     new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name4)));
             stream4.write(bytes4);
             stream4.close();
+
+            File src = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location");
+		    File dest = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\adminportal\\src\\main\\resources\\static\\images\\location");
+		    FileSystemUtils.copyRecursively(src, dest);
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -171,10 +180,20 @@ public class LocationController {
                 stream5.write(bytes4);
                 stream5.close();
 
+
+                File src = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location");
+                File dest = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\adminportal\\src\\main\\resources\\static\\images\\location");
+                FileSystemUtils.copyRecursively(src, dest);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+
+
+//        HttpServletResponse response = null;
+//        response.setHeader("Set-Cookie", "key=value; HttpOnly; SameSite=None; Secure");
 
 
         return "redirect:/location/locationInfo?id="+location.getId();
@@ -192,8 +211,8 @@ public class LocationController {
     @RequestMapping(value={"/remove"},method = RequestMethod.POST)
     public String remove(@ModelAttribute("id") String id, Model model){
 
-        Location location = locationService.getOne(Long.parseLong(id.substring(8)));
-       locationService.removeOne(Long.parseLong(id.substring(8)));
+        Location location = locationService.getOne(Long.parseLong(id));
+        locationService.removeOne(Long.parseLong(id.substring(8)));
 
         MultipartFile locationImage = location.getLocationImage();
         MultipartFile locationImage1 = location.getLocationImage1();
@@ -201,28 +220,23 @@ public class LocationController {
         MultipartFile locationImage3 = location.getLocationImage3();
         MultipartFile locationImage4 = location.getLocationImage4();
 
-        try{
-//            byte[] bytes = locationImage.getBytes();
-//            byte[] bytes1 = locationImage1.getBytes();
-//            byte[] bytes2 = locationImage2.getBytes();
-//            byte[] bytes3 = locationImage3.getBytes();
-//            byte[] bytes4 = locationImage4.getBytes();
+            try {
+                String name = location.getId() + ".jpg";
+                String name1 = 2 * (location.getId()) + ".jpg";
+                String name2 = 3 * (location.getId()) + ".jpg";
+                String name3 = 4 * (location.getId()) + ".jpg";
+                String name4 = 5 * (location.getId()) + ".jpg";
 
-            String name = location.getId() + ".jpg";
-            String name1 = 2*(location.getId()) + ".jpg";
-            String name2 = 3*(location.getId()) + ".jpg";
-            String name3 = 4*(location.getId()) + ".jpg";
-            String name4 = 5*(location.getId()) + ".jpg";
+                Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name));
+                Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name1));
+                Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name2));
+                Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name3));
+                Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name4));
 
-            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name));
-            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name1));
-            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name2));
-            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name3));
-            Files.delete(Paths.get("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name4));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
 
         List<Location> locationList = locationService.findAll();
         model.addAttribute("locationList",locationList);

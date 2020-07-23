@@ -6,6 +6,10 @@ $(document).ready(function() {
         stateSave:true
     });
 
+var table = $('#locationList').DataTable();
+table.buttons( '.print' ).disable();
+table.buttons().disable();
+
     $('#locationList').on('page.dt', function(){
       $('html,body').animate({
          scrollTop: $('#locationList').offset().top

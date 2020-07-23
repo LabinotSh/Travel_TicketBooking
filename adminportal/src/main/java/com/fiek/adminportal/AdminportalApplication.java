@@ -10,7 +10,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.session.web.http.CookieSerializer;
+import org.springframework.session.web.http.DefaultCookieSerializer;
+import org.springframework.util.FileSystemUtils;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +28,14 @@ public class AdminportalApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AdminportalApplication.class, args);
+	}
+
+	@Bean
+	public CookieSerializer cookieSerializer() {
+		DefaultCookieSerializer cookieSerializer = new DefaultCookieSerializer();
+		cookieSerializer.setSameSite("None");
+		cookieSerializer.setUseSecureCookie(true);
+		return cookieSerializer;
 	}
 
 	@Override
@@ -40,5 +53,10 @@ public class AdminportalApplication implements CommandLineRunner {
 		userRoles.add(new UserRole(user1,role1));
 
 		userService.createUser(user1,userRoles);
+
+
+//		File src = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location");
+//		File dest = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\adminportal\\src\\main\\resources\\static\\images\\location");
+//		FileSystemUtils.copyRecursively(src, dest);
 	}
 }

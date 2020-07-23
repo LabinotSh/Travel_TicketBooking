@@ -17,6 +17,15 @@ body{
     text-align: center;
     color: #333;
 }
+.orange {
+ background: rgba(244, 98, 58, 0.9);
+  color: white;
+}
+
+.orange:hover {
+  background: rgba(244, 98, 58, 0.9);
+  color: white;
+}
 </style>
 <body>
 <!--<div th:replace="common/header :: navbar"/>-->
@@ -53,7 +62,7 @@ body{
                 <input type="password" class="form-control" placeholder="Password"
                        name="password" id="password" required="required" />
             </div>
-            <button class="btn btn-xl btn-primary btn-block" type="submit">Sign In</button>
+            <button class="btn btn-block orange" type="submit">Sign In</button>
         </form>
         </div>
     </div>

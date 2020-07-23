@@ -143,6 +143,10 @@ font-family:Lucida Console, Courier, monospace; font-weight: none;
 color:#003366;
 font-size: 30px;
 }
+.aboutT{
+ font-family: 'Dancing Script', cursive;
+ font-weight:600;
+ }
 
 .sl4{
 background-image: url(/images/no.jpg);
