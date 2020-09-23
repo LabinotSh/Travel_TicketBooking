@@ -23,14 +23,27 @@ public class LocationToCartItem {
     @JoinColumn(name="cart_item_id")
     private CartItem cartItem;
 
+    @ManyToOne
+    @JoinColumn(name="ticket_id")
+    private Ticket ticket;
+
     public LocationToCartItem(){
 
     }
 
-    public LocationToCartItem(Long id, Location location, CartItem cartItem) {
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
+
+    public LocationToCartItem(Long id, Location location, CartItem cartItem, Ticket ticket) {
         this.id = id;
         this.location = location;
         this.cartItem = cartItem;
+        this.ticket = ticket;
     }
 
     public Long getId() {

@@ -81,7 +81,7 @@ table.dataTable{border-collapse:separate !important;}
         }
 
 
-.c2 {
+.c22 {
   background:
     linear-gradient(
       rgba(0, 0, 0, 0.3),
@@ -90,10 +90,13 @@ table.dataTable{border-collapse:separate !important;}
     url(/images/pej1.jpg);
   background-size: cover;
   width:100%;
- margin-bottom:30px;
-  margin-top:3rem;
+ //margin-bottom:30px;
+  margin-top:3.5rem;
 <!--  margin: 5px 0 0 20px;-->
 }
+
+.r1{
+margin-top:40px;}
 
 .top h2,h3 {
   color: white;
@@ -111,7 +114,9 @@ width:auto;
 display: -webkit-box;
 -webkit-line-clamp: 4;
 -webkit-box-orient: vertical;
-font-family: 'Goudy Old Style', Garamond, 'Big Caslon', 'Times New Roman', serif; font-size:18px;
+font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+//font-family: 'Goudy Old Style', Garamond, 'Big Caslon', 'Times New Roman', serif;
+font-size:16px;
 }
 
 .card-horizontal {
@@ -195,9 +200,15 @@ background-image: linear-gradient(315deg, #fc5296 0%, #f67062 74%);
 .i{
 margin-left:-3px;}
 
+.t1{
+background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+margin-bottom:5px;
+}
+
 .location-item{
 border-top-right-radius:10%;
 border-bottom-left-radius:10%;
+border-bottom:1px solid rgba(244, 98, 58, 0.9);
 }
 .ima{
 border-radius:1.5rem;
@@ -205,12 +216,38 @@ border-radius:1.5rem;
 
 @media (max-width: 768px) {
  .list-group{
-  width:70%;
+  width:100%;
  }
  .dd{
- margin-left:8rem;
+ margin-left:7rem;
+ margin-bottom:.6rem;
+ align-items:center;
+ text-align:center;
 }
+.title{
+margin-top:.5rem;}
+.c11{
+width:100%;
+text-align:center;
+}
+.aa{
+width:100%;}
+.top{
+font-size:22px;
+margin-left:-1rem;}
+.h3{
+text-align:center;}
 }
 
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2){
 
+  }
+
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3)
 

@@ -5,6 +5,7 @@ import com.fiek.adminportal.domain.security.Role;
 import com.fiek.adminportal.domain.security.UserRole;
 import com.fiek.adminportal.service.UserService;
 import com.fiek.adminportal.utility.SecurityUtility;
+import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +31,11 @@ public class AdminportalApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(AdminportalApplication.class, args);
 	}
+
+//	@Bean(initMethod = "start", destroyMethod = "stop")
+//	public Server h2Server() throws SQLException {
+//		return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
+//	}
 
 	@Bean
 	public CookieSerializer cookieSerializer() {

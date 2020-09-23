@@ -30,7 +30,7 @@
                             <a class="a1" th:href="@{/destinationList}">
                                 <i class="fa fa-arrow-left"></i>LOCATIONS</a>
                         </div>
-                        <div class="col-md-8  text-center d1">
+                        <div class="col-md-8 text-center d1">
 <!--                            <div class="bg-dark text-center py-1 ff">Booking & Ticket-->
 <!--                                Info-->
 <!--                            </div>-->
@@ -52,7 +52,7 @@
                                         <div class="col-md-4 mt-2 co2">
                                             <i class="fas fa-ticket-alt ic"></i>
                                             <span class="aa">Nr. of Tickets:</span>
-                                            <select name="qty">
+                                            <select name="qty" class="n2">
                                                 <option th:each="qty : ${qtyList}" th:value="${qty}"
                                                         th:text="${qty}">
                                                 </option>
@@ -84,17 +84,16 @@
 
                     <div class="row row2 mb-5">
                         <div class="col-md-5 text-center">
-                            <a class="aa" th:href="@{/images/location/}+${location.id}+'.jpg'" data-size="1600x1067">
+                            <a class="aa" th:href="@{/images/loc1/}+${location.id}+'.jpg'" data-size="1600x1067">
                                 <img class="img-fluid destination-list"
-                                     th:src="@{/images/location/}+${location.id}+'.jpg'"/>
+                                     th:src="@{/images/loc1/}+${location.id}+'.jpg'"/>
                             </a>
                         </div>
 
 
                         <div class="col-md-6 mr-3">
-                            <div class="pala"><span class="display-4"
-                                                    th:text="${location.name}" style="font-size:20px;">, </span> -
-                                <span th:text="${location.address}" style="font-size:20px;">,</span></div>
+                            <div class="pala1"><span th:text="${location.name}">, </span> -
+                                <span th:text="${location.address}">,</span></div>
                             <!--                <h6>Municipality: <span th:text="${location.municipality}" style="font-size:17px; color:darkred;"></span></h6>-->
                             <h6 class="pala">Ticket price:
                                 <span th:text="${#numbers.formatDecimal(location.bookingPrice,0,'COMMA',2,'POINT')}"
@@ -125,28 +124,28 @@
                     <div class="row">
 
                         <figure class="col-sm-3">
-                            <a th:href="@{/images/location/}+${4*location.id}+'.jpg'" data-size="1600x1067">
-                                <img alt="picture" th:src="@{/images/location/}+${4*location.id}+'.jpg'"
+                            <a th:href="@{/images/loc1/}+${4*location.id}+'.jpg'" data-size="1600x1067">
+                                <img alt="picture" th:src="@{/images/loc1/}+${4*location.id}+'.jpg'"
                                      class="img-fluid imagee"/>
                             </a>
                         </figure>
 
                         <figure class="col-sm-3">
-                            <a th:href="@{/images/location/}+${5*location.id}+'.jpg'" data-size="1600x1067">
-                                <img alt="picture" th:src="@{/images/location/}+${5*location.id}+'.jpg'"
+                            <a th:href="@{/images/loc1/}+${5*location.id}+'.jpg'" data-size="1600x1067">
+                                <img alt="picture" th:src="@{/images/loc1/}+${5*location.id}+'.jpg'"
                                      class="img-fluid imagee"/>
                             </a>
                         </figure>
 
                         <figure class="col-sm-3">
-                            <a th:href="@{/images/location/}+${2*location.id}+'.jpg'" data-size="1600x1067">
-                                <img alt="picture" th:src="@{/images/location/}+${2*location.id}+'.jpg'"
+                            <a th:href="@{/images/loc1/}+${2*location.id}+'.jpg'" data-size="1600x1067">
+                                <img alt="picture" th:src="@{/images/loc1/}+${2*location.id}+'.jpg'"
                                      class="img-fluid imagee"/>
                             </a>
                         </figure>
                         <figure class="col-sm-3">
-                            <a th:href="@{/images/location/}+${3*location.id}+'.jpg'" data-size="1600x1067">
-                                <img alt="picture" th:src="@{/images/location/}+${3*location.id}+'.jpg'"
+                            <a th:href="@{/images/loc1/}+${3*location.id}+'.jpg'" data-size="1600x1067">
+                                <img alt="picture" th:src="@{/images/loc1/}+${3*location.id}+'.jpg'"
                                      class="img-fluid imagee"/>
                             </a>
                         </figure>

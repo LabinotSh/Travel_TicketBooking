@@ -12,17 +12,17 @@
 <body>
 <!-- Static navbar -->
 <div th:replace="common/header :: navbar"/>
-<div class="container-fluid c2">
+<div class="container-fluid c22">
     <div class="row text-center">
         <div class="col top text-center">
-            <h3 class="display-4 it">～Attraction List～</h3>
+            <h3 class="display-4 it" style="font-size:52px;">～Attraction List～</h3>
         </div>
     </div>
 </div>
 
 <!--Container-->
-<div class="container-fluid t1" style="margin-bottom:50px; width:95%;">
-    <div class="row">
+<div class="container-fluid t1" style="width:90%;">
+    <div class="row r1">
         <div class="col-md-2 mr-5">
             <h4 class="h3"><label for="municipality" class="h3">Search By Region</label>
             </h4>
@@ -69,11 +69,11 @@
                                                 <div class="col-md-4">
                                                     <a th:href="@{/locationDetails?id=}+${location.id}">
                                                         <img class="img-fluid ima"
-                                                             th:src="@{/images/location/}+${location.id}+'.jpg'" /></a>
+                                                             th:src="@{/images/loc1/}+${location.id}+'.jpg'" /></a>
                                                 </div>
                                                 <div class="col-md-7 ml-3">
                                                     <!--                        <div class="card-body">-->
-                                                    <div class="text-left">
+                                                    <div class="text-left title">
                                                         <a th:href="@{/locationDetails?id=}+${location.id}">
                                                             <h4 class="h4"
                                                                 th:text="${#strings.capitalize(location.name)}"></h4></a>

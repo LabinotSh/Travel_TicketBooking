@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="/css/orderSP.css"/>
 
 <body>
-<!-- Static navbar -->
-<div th:replace="common/header :: navbar"/>
+<!--&lt;!&ndash; Static navbar &ndash;&gt;-->
+<!--<div th:replace="common/header :: navbar"/>-->
 <!--Container-->
 <div class="container-fluid" style="margin-bottom:10rem; margin-top:5rem;">
 
@@ -77,9 +77,9 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-12 text-center">
-                                <button type="button" class="btn orange" th:href="@{/index}">
+                                <a class="btn orange" th:href="@{/}">
                                     Go Back Home <i class="fas fa-home"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

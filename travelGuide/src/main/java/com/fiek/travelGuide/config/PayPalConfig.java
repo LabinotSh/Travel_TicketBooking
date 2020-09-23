@@ -1,5 +1,6 @@
 package com.fiek.travelGuide.config;
 
+import com.paypal.api.payments.FuturePayment;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.OAuthTokenCredential;
 import com.paypal.base.rest.PayPalRESTException;
@@ -38,6 +39,7 @@ public class PayPalConfig {
     public APIContext apiContext() throws PayPalRESTException {
         @SuppressWarnings("deprecation")
         APIContext context = new APIContext(oAuthTokenCredential().getAccessToken());
+//        String refreshToken = FuturePayment.fetchRefreshToken(context,oAuthTokenCredential());
         context.setConfigurationMap(paypalSdkConfig());
         return context;
     }

@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="card card-body card-1" style="border-bottom-left-radius:5rem;">
-                        <button type="submit" class="btn btn-block text-white btn-1">Place your order <img class="img-fluid ml-1" th:src="@{/images/paypal.png}"/></button>
+                        <button type="submit" class="btn btn-block text-white btn-1" style="font-size:20px;">Place your order <img class="img-fluid ml-1" th:src="@{/images/paypal.png}"/></button>
                         <p class="sm tt">By placing your order, you agree to our site's
                             <a href="#">privacy</a> notice and <a href="#">conditions</a> of use.</p>
                         <hr/>
@@ -843,40 +843,40 @@
                         <div id="reviewItems" class="collapse" aria-labelledby="three"
                              data-parent="#accordion" th:classappend="${classActiveReview}? 'in'">
                             <div class="card-body">
-                                <h5>Choose your shipping method:</h5>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="shippingMethod" value="groundShipping"
-                                               checked="checked"/>
-                                        Ground Shipping
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="shippingMethod" value="premiumShipping"/>
-                                        Premium Shipping
-                                    </label>
-                                </div>
+<!--                                <h5>Choose your shipping method:</h5>-->
+<!--                                <div class="radio">-->
+<!--                                    <label>-->
+<!--                                        <input type="radio" name="shippingMethod" value="groundShipping"-->
+<!--                                               checked="checked"/>-->
+<!--                                        Ground Shipping-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                                <div class="radio">-->
+<!--                                    <label>-->
+<!--                                        <input type="radio" name="shippingMethod" value="premiumShipping"/>-->
+<!--                                        Premium Shipping-->
+<!--                                    </label>-->
+<!--                                </div>-->
                                 <br/>
 
                                 <div class="row">
-                                    <div class="col-8"><h6>Products</h6></div>
-                                    <div class="col-2"><h6>Price</h6></div>
-                                    <div class="col-2"><h6>Quantity</h6></div>
+                                    <div class="col-md-8"><h6>Products</h6></div>
+                                    <div class="col-md-2"><h6>Price</h6></div>
+                                    <div class="col-md-2"><h6>Quantity</h6></div>
                                 </div>
 
                                 <hr/>
                                 <!--                                Display items in the cart-->
                                 <div class="row" th:each="cartItem : ${cartItemList}">
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                         <a th:href="@{/locationDetails(id=${cartItem.location.id})}">
                                             <!--Image thumbnail-->
                                             <img class="img-thumbnail location-details"
-                                                 th:src="@{/images/location/}+${cartItem.location.id}+'.jpg'"/>
+                                                 th:src="@{/images/loc1/}+${cartItem.location.id}+'.jpg'"/>
                                         </a>
 
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <a th:href="@{locationDetails?id}+${cartItem.location.id}"></a>
                                         <p class="mb-0">
                                             <img class="img-fluid" src="/images/tck.png"/><span th:text="${cartItem.qty}" class="sp1"></span> Ticket/s for
@@ -888,19 +888,19 @@
                                             Unavailable</p>
                                     </div>
 
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                         <h5 class="h55">€<span th:text="${cartItem.location.bookingPrice}"></span></h5>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                         <h5 th:text="${cartItem.qty}" class="h51"></h5>
                                     </div>
                                 </div>
 
 
                                 <hr/>
-                                <h4 class="col-12 text-right"><strong class="h51">Order Total:
+                                <h4 class="col-md-12 text-right"><strong class="h51">Order Total:
                                     <!--                                                                   (<span th:text="${#Lists.size(cartItemList)}"> </span>-->
                                     <!--                                                            items):-->
                                 </strong>

@@ -67,32 +67,32 @@ public class LocationController {
 
 
                 BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name)));
+                        new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\loc1/" + name)));
                 stream.write(bytes);
                 stream.close();
 
             BufferedOutputStream stream1 = new BufferedOutputStream(
-                    new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name1)));
+                    new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\loc1/" + name1)));
             stream1.write(bytes1);
             stream1.close();
 
             BufferedOutputStream stream2 = new BufferedOutputStream(
-                    new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name2)));
+                    new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\loc1/" + name2)));
             stream2.write(bytes2);
             stream2.close();
 
             BufferedOutputStream stream3 = new BufferedOutputStream(
-                    new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name3)));
+                    new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\loc1/" + name3)));
             stream3.write(bytes3);
             stream3.close();
 
             BufferedOutputStream stream4 = new BufferedOutputStream(
-                    new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location/" + name4)));
+                    new FileOutputStream(new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\loc1/" + name4)));
             stream4.write(bytes4);
             stream4.close();
 
-            File src = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\location");
-		    File dest = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\adminportal\\src\\main\\resources\\static\\images\\location");
+            File src = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\travelGuide\\src\\main\\resources\\static\\images\\loc1");
+		    File dest = new File("C:\\Users\\TECHCOM\\git\\Projects\\KosovoTravel&Booking\\adminportal\\src\\main\\resources\\static\\images\\loc1");
 		    FileSystemUtils.copyRecursively(src, dest);
 
 
@@ -211,7 +211,7 @@ public class LocationController {
     @RequestMapping(value={"/remove"},method = RequestMethod.POST)
     public String remove(@ModelAttribute("id") String id, Model model){
 
-        Location location = locationService.getOne(Long.parseLong(id));
+        Location location = locationService.getOne(Long.parseLong(id.substring(8)));
         locationService.removeOne(Long.parseLong(id.substring(8)));
 
         MultipartFile locationImage = location.getLocationImage();

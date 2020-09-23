@@ -68,7 +68,7 @@
 
 .nav-tabs-wrapper-border {
     display: block;
-    width: 100%;
+    width: 80%;
     border-top: 1px solid #ddd;
 }
 
@@ -83,7 +83,6 @@
       rgba(0, 0, 0, 0.7) 100%
     ),
     url(/images/gjeravica.jpg);
-
   background-size: cover;
   background-attachment:fixed;
   // linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%)
@@ -145,14 +144,17 @@ background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);}
 
 @media (max-width: 576px) {
 .img1{
+display:none;
 max-height:300px;
 margin-top:1rem;
 margin-left:1.2rem;}
 .img2{
+display:none;
 max-height:300px;
 margin-top:1rem;
 margin-left:1.2rem;}
 .img3{
+display:none;
 max-height:300px;
 margin-top:1rem;
 margin-left:4.5rem;}

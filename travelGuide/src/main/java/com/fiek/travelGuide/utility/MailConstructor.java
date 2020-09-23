@@ -53,7 +53,7 @@ public class MailConstructor {
                 email.setTo(user.getEmail());
                 email.setSubject("Order confirmation - " + order.getId());
                 email.setText(text,true);
-                email.setFrom(new InternetAddress("sherifilabinot@gmail.com"));
+                email.setFrom(new InternetAddress("kosovatickets@gmail.com"));
             }
         };
 

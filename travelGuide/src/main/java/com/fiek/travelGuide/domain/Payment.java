@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Data
 @Entity
@@ -11,7 +12,7 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String type;
     private String cardName;
     private String cardNumber;
@@ -31,7 +32,7 @@ public class Payment {
 
     }
 
-    public Payment(String id, String type, String cardName, String cardNumber, int expiryMonth, int expiryYear, int cvc, String holderName, Order order, UserBilling userBilling) {
+    public Payment(Long id, String type, String cardName, String cardNumber, int expiryMonth, int expiryYear, int cvc, String holderName, Order order, UserBilling userBilling) {
         this.id = id;
         this.type = type;
         this.cardName = cardName;
@@ -52,11 +53,11 @@ public class Payment {
         this.order = order;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

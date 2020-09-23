@@ -68,6 +68,11 @@ public class HomeController {
         return "index";
     }
 
+//    @RequestMapping(value = {"/cancel"})
+//    public String cancel(){
+//        return "cancel";
+//    }
+
 //    @RequestMapping(value={"/account"})
 //    public String userAccount(){
 //        return "userAccount";
